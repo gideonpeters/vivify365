@@ -4,6 +4,10 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Devotion extends Resource
@@ -20,7 +24,7 @@ class Devotion extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -39,8 +43,15 @@ class Devotion extends Resource
      */
     public function fields(Request $request)
     {
+        HasMany::make('Devotionals');
+
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            Image::make('Image')->prunable(),
+            Text::make('Title'),
+            Textarea::make('Description'),
+            HasMany::make('Devotionals')
+
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -22,7 +23,7 @@ class Blog extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -30,7 +31,7 @@ class Blog extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
 
     /**
@@ -45,6 +46,7 @@ class Blog extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('Title'),
             Text::make('Author'),
+            HasMany::make('Comments'),
             Trix::make('Body')->withFiles('public'),
         ];
     }

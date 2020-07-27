@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Comment extends Resource
@@ -45,7 +47,11 @@ class Comment extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('Name'),
             Text::make('Email'),
-            Textarea::make('Body')
+            Textarea::make('Body'),
+            BelongsTo::make('Comment')->nullable(),
+            BelongsTo::make('Blog'),
+            HasMany::make('Comments'),
+    
         ];
     }
 

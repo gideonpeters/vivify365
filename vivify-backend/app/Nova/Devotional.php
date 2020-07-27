@@ -4,6 +4,10 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Devotional extends Resource
@@ -28,7 +32,7 @@ class Devotional extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
 
     /**
@@ -41,6 +45,12 @@ class Devotional extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            Text::make('Title'),
+            Trix::make('Body'),
+            Image::make('Image',)->prunable(),
+            BelongsTo::make('Devotion')
+
+
         ];
     }
 

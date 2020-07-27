@@ -4,6 +4,10 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Sermon extends Resource
@@ -41,6 +45,11 @@ class Sermon extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            Image::make('Image', 'image_url')->prunable(),
+            Text::make('Title'),
+            Text::make('Speaker', 'author'),
+            Textarea::make('Body'),
+            File::make('File', 'audio_url')
         ];
     }
 

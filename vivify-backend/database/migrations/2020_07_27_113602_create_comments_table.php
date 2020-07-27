@@ -18,9 +18,9 @@ class CreateCommentsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->text('body');
-            $table->foreignId('comment_id')->nullable();
-            $table->unsignedBigInteger('commentable_id')->nullable();
-            $table->string('commentable_type')->nullable();
+            $table->foreignId('blog_id')->nullable();
+            // $table->unsignedBigInteger('commentable_id')->nullable();
+            // $table->string('commentable_type')->nullable();
             $table->timestamps();
         });
     }
