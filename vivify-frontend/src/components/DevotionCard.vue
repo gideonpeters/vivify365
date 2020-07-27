@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="text-white">
     <div
-      class="flex justify-around mx-5 p-2 hd-75 flex-col rounded border border-orange-500"
-      :class="{'border-purple-700 hd-100': primary}"
+      class="bg-purple-700 flex items-center justify-around mx-5 p-5 hd-75 flex-col rounded"
+      :class="{' hd-100': primary}"
     >
+      <div class="bg-white w-full h-32 rounded mb-2"></div>
       <div class>
         <div class="font-bold">TODAY'S QUOTE</div>
       </div>
@@ -12,22 +13,8 @@
           class="text-sm"
         >Lorem ipsum dolor sit amet consectetur adipisicing elit. Arecusandae esse pariatur rem illo repellendus, voluptas est unde, optio voluptatum a eveniet reiciendis incidunt sunt quisquam at corrupti?</div>
       </div>
-      <div class="pt-1">
-        <div>By: Pastor Kenneth Olusanya</div>
-      </div>
-      <div class="pt-1 flex items-center justify-center">
-        <div class="text-purple-700 pr-2">Share:</div>
-        <!-- <div class="flex"> -->
-        <div>
-          <i class="mdi mdi-whatsapp text-green-700 mdi-18px"></i>
-        </div>
-        <div class="px-5">
-          <i class="mdi mdi-twitter text-blue-500 mdi-18px"></i>
-        </div>
-        <div>
-          <i class="mdi mdi-instagram mdi-18px"></i>
-        </div>
-        <!-- </div> -->
+      <div>
+        <div class="text-sm cursor-pointer">READ MORE</div>
       </div>
     </div>
   </div>

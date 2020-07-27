@@ -25,7 +25,9 @@
         </div>
       </div>
     </div>
-    <div class="container mx-auto flex flex-col items-center justify-center">
+    <div
+      class="container mx-auto xl:w-full w-full lg:w-4/5 flex flex-col items-center justify-center"
+    >
       <div
         class="bg-purple-700 p-10 sm:py-24 py-10 lg:my-4 mb-4 lg:text-left text-center text-white"
       >
@@ -38,21 +40,42 @@
       </div>
       <subheader title="LATEST BLOG POSTS" subTitle="Here are some of our recent blog posts" />
       <div
-        class="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8 flex sm:items-start lg:items-center items-center mt-12"
+        class="grid xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 flex sm:items-start lg:items-center items-center mt-12"
       >
-        <mini-blog-card />
-        <mini-blog-card class="lg:block hidden" double />
-        <mini-blog-card class="lg:hidden block" />
+        <mini-blog-card imageLink="https://pbs.twimg.com/media/EUIfS9yWsAE3rAC.jpg" />
+        <mini-blog-card imageLink="https://pbs.twimg.com/media/DeDUNENX4AAYkIE.jpg:large" double />
+        <mini-blog-card
+          imageLink="https://pbs.twimg.com/media/DeDUNENX4AAYkIE.jpg:large"
+          class="lg:hidden block"
+        />
         <div class="flex flex-col">
-          <mini-blog-card />
-          <mini-blog-card class="lg:block hidden" />
+          <mini-blog-card imageLink="https://pbs.twimg.com/media/ER3-w87XYAEV1NA.jpg" />
+          <mini-blog-card
+            imageLink="https://pbs.twimg.com/media/ERDZyniXYAAxhlO.jpg"
+            class="lg:block hidden"
+          />
         </div>
-        <mini-blog-card />
+        <mini-blog-card
+          imageLink="https://vivify365.org/blog/wp-content/uploads/2020/06/IMG-20200604-WA0002-738x423.jpg"
+          class="lg:block sm:hidden hidden"
+        />
+      </div>
+      <div class="mt-5 mb-32">
+        <custom-button text="VIEW ALL" :onClick="()=>goToPage('main.blog')" sm rounded />
+      </div>
+      <subheader title="VIVIFY DEVOTIONALS" subTitle="Anchored By Abundant Grace" />
+      <div
+        class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 flex lg:items-center sm:items-center items-center justify-center mt-12"
+      >
+        <devotion-card class="lg:block hidden" />
+        <devotion-card primary />
+        <devotion-card primary class="lg:hidden xs:hidden block" />
+        <devotion-card class="lg:block hidden" />
       </div>
       <div class="mt-5 mb-32">
         <custom-button text="VIEW ALL" sm rounded />
       </div>
-      <subheader title="VIVIFY'S QUOTE OF THE DAY" subTitle="Anchored by Abundant Grace" />
+      <subheader title="VIVIFY'S QUOTE OF THE DAY" />
       <div
         class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 flex lg:items-center sm:items-center items-center justify-center mt-12"
       >
@@ -61,7 +84,10 @@
         <quote-card primary class="lg:hidden xs:hidden block" />
         <quote-card class="lg:block hidden" />
       </div>
-      <subheader title="GALLERY" subTitle="Pictorial Depiction of our family" class="mt-32" />
+      <div class="mt-5 mb-32">
+        <custom-button text="VIEW ALL" sm rounded />
+      </div>
+      <subheader title="GALLERY" subTitle="Pictorial Depiction of our family" class />
       <div class="flex flex-col items-center">
         <div class="flex lg:flex-row flex-col justify-between">
           <div class="mr-0 lg:mr-3">
@@ -94,7 +120,7 @@
           />
         </div>
         <div
-          class="flex-1 lg:text-left sm:text-left text-center text-purple-700 lg:mt-0 mt-5 lg:pl-10 pl-0"
+          class="flex-1 lg:text-left sm:text-left text-center text-purple-700 lg:mt-0 mt-5 lg:pl-10 sm:pl-5 pl-0"
         >
           <div class="text-2xl">Hello,</div>
           <div
@@ -169,12 +195,19 @@ import Subheader from "@/components/Subheader.vue";
 import CustomButton from "@/components/CustomButton.vue";
 import MiniBlogCard from "@/components/MiniBlogCard.vue";
 import QuoteCard from "@/components/QuoteCard.vue";
+import DevotionCard from "@/components/DevotionCard.vue";
 export default {
   components: {
     Subheader,
     CustomButton,
     MiniBlogCard,
-    QuoteCard
+    QuoteCard,
+    DevotionCard
+  },
+  methods: {
+    goToPage(name, id) {
+      this.$router.push({ name: name, params: { id: id } });
+    }
   }
 };
 </script>

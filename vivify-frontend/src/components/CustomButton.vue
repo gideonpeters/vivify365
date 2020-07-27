@@ -1,7 +1,8 @@
 <template>
   <div>
     <button
-      class="bg-orange-500 text-white text-center px-10"
+      @click="handleClick"
+      class="bg-orange-500 hover:bg-orange-600 text-white text-center px-10"
       :class="{ 'py-1 ':sm, 'py-3 ' : !sm, 'rounded': rounded }"
     >{{text}}</button>
   </div>
@@ -22,11 +23,16 @@ export default {
       type: Boolean,
       default: false
     },
-    click: {
+    onClick: {
       type: Function
     },
     text: {
       type: String
+    }
+  },
+  methods: {
+    handleClick() {
+      this.onClick();
     }
   }
 };

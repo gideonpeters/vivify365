@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="container mx-auto grid lg:grid-cols-4 grid-cols-1 py-12">
+    <div class="container mx-auto grid lg:grid-cols-5 grid-cols-1 py-12">
       <div class="lg:text-left text-purple-700 font-bold text-center mx-auto">
         YOU ARE NOW
         <br />VIVIFIED
@@ -30,12 +30,21 @@
       <div class="mt-5 lg:mt-0">
         <div class="flex flex-col lg:text-left text-center lg:items-start items-center">
           <div>
+            <div class="border-b border-purple-700 pb-2 mb-2 pr-0 lg:pr-10">CONTACT US</div>
+          </div>
+          <div>+234 817 233 3203</div>
+          <div class="py-2">info@vivify365.org</div>
+        </div>
+      </div>
+      <div class="mt-5 lg:mt-0">
+        <div class="flex flex-col lg:text-left text-center lg:items-start items-center">
+          <div>
             <div class="border-b border-purple-700 pb-2 mb-2 pr-0 lg:pr-10">MENU</div>
           </div>
           <div>Home</div>
-          <div>Blog</div>
+          <div class="py-2">Blog</div>
           <div>Devotional</div>
-          <div>Speak Up</div>
+          <div class="py-2">Speak Up</div>
           <div>Contact</div>
         </div>
       </div>
@@ -49,9 +58,11 @@
           <div>Instagram</div>
         </div>
       </div>
-      <div class="lg:text-right text-purple-700 font-bold text-center">
-        SEE YOU SOON
-        <br />REMAIN VIVIFIED
+      <div class="flex lg:justify-start justify-center">
+        <div class="lg:text-right text-purple-700 font-bold text-center">
+          SEE YOU SOON
+          <br />REMAIN VIVIFIED
+        </div>
       </div>
     </div>
   </div>
