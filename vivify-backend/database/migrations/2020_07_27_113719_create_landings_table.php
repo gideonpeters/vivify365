@@ -15,6 +15,8 @@ class CreateLandingsTable extends Migration
     {
         Schema::create('landings', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
         });
     }

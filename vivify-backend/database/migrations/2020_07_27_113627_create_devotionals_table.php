@@ -15,6 +15,9 @@ class CreateDevotionalsTable extends Migration
     {
         Schema::create('devotionals', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('body');
+            $table->foreignId('devotion_id')->nullable();
             $table->timestamps();
         });
     }
