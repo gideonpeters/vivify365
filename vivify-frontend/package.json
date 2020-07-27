@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.2",
@@ -16,6 +17,7 @@
     "tailwindcss": "^1.5.2",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
+    "vue-social-sharing": "^3.0.0-beta.11",
     "vue-tailwind": "^0.4.6",
     "vuex": "^3.5.1"
   },

@@ -15,7 +15,7 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $blogs = Blog::paginate(2);
+        $blogs = Blog::withCount('comments')->paginate(2);
         return response()->json([
             'status' => true,
             'message' => 'these are all the blog posts',
@@ -26,18 +26,18 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         //
-        if(empty($blog)){
-            return response()->json([
-                'status' => true,
-                'message' => 'blog post not found',
-                'data' => $blog
-            ], 201);
-        }
-
+        // if(!empty($blog)){
+        //     return response()->json([
+        //         'status' => true,
+        //         'message' => 'blog post not found',
+        //         'data' => []
+        //     ], 201);
+        // }
+        $blog->load('comments');
         return response()->json([
             'status' => true,
             'message' => 'this is the blog post',
-            'data' => $blog
+            'data' => $blog->loadCount('comments')
         ], 201);
     }
 

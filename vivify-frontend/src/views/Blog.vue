@@ -48,9 +48,9 @@
     </div>
     <!-- <div class=" flex justify-around"> -->
     <div class="container lg:mx-auto mt-8 px-5 grid lg:grid-cols-3 grid-cols-1 gap-6">
-      <blog-card />
-      <blog-card />
-      <blog-card />
+      <blog-card v-for="post in posts" :key="post.id" :post="post" />
+      <!-- <blog-card />
+      <blog-card />-->
     </div>
     <!-- </div> -->
     <div class="container w-4/5 mx-auto flex justify-center mt-8">
@@ -83,8 +83,43 @@ export default {
       perPage: 6,
       limit: 5,
       disabled: false,
-      currentPage: 1
+      currentPage: 1,
+      posts: []
     };
+  },
+  // computed: {
+  //   posts() {
+  //     return this.$store.state.blogs;
+  //   }
+  // },
+  methods: {
+    async getBlogPosts(pageNumber) {
+      // try {
+      await this.$store
+        .dispatch("getBlogPosts", pageNumber)
+        .then(({ data }) => {
+          // this.currentPage = data.current_page;
+          this.perPage = data.per_page;
+          this.totalRows = data.total;
+          // console.log(data);
+          this.posts = data.data;
+        });
+      // } catch (error) {
+      //   throw error;
+      // }
+    }
+  },
+  watch: {
+    currentPage(v) {
+      this.getBlogPosts(v);
+    }
+  },
+  async mounted() {
+    // try {
+    await this.getBlogPosts();
+    // } catch (error) {
+    //   throw error;
+    // }
   }
 };
 </script>

@@ -2,19 +2,28 @@
   <div class>
     <div class="bg-purple-200 p-16">
       <div
-        class="lg:text-5xl sm:text-3xl text-2xl font-bold text-purple-700"
-      >HELP! I LIVE WITH MY PARENTS</div>
+        class="lg:text-5xl sm:text-3xl text-2xl font-bold text-purple-700 break-words"
+      >{{post.title}}</div>
       <div class="flex justify-center mt-5">
         <div
           class="blog-image xl:w-3/5 lg:w-4/5 w-full z-0 shadow-md bg-center bg-cover bg-no-repeat bg-blue-400"
-          :style="{backgroundImage: 'url('+'https://vivify365.org/blog/wp-content/uploads/2020/06/WhatsApp-Image-2020-06-23-at-21.37.53-738x423.jpeg'+')'}"
+          :style="{backgroundImage: 'url('+uri  +post.image_link+')'}"
         >
           <div class="text-white lg:-ml-8 -ml-5 mt-5">
-            <div
-              class="cursor-pointer flex justify-center items-center rounded-full lg:w-16 w-10 lg:h-16 h-10 bg-purple-800"
+            <ShareNetwork
+              network="facebook"
+              url="https://news.vuejs.org/issues/180"
+              title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
+              description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+              quote="The hot reload is so fast it\'s near instant. - Evan You"
+              hashtags="vuejs,vite"
             >
-              <i class="mdi mdi-facebook lg:mdi-36px mdi-24px"></i>
-            </div>
+              <div
+                class="cursor-pointer flex justify-center items-center rounded-full lg:w-16 w-10 lg:h-16 h-10 bg-purple-800"
+              >
+                <i class="mdi mdi-facebook lg:mdi-36px mdi-24px"></i>
+              </div>
+            </ShareNetwork>
             <div
               class="cursor-pointer flex justify-center items-center rounded-full lg:w-16 w-10 lg:h-16 h-10 bg-purple-800 my-5"
             >
@@ -30,7 +39,7 @@
       </div>
     </div>
     <div class="flex justify-start text-justify container mx-auto px-10 py-10 bg-white">
-      <div v-html="blogText" class="leading-loose text-2xl"></div>
+      <div v-html="post.body" class="leading-loose text-2xl"></div>
     </div>
     <div class="flex container mx-auto justify-between">
       <div class="text-gray-600 text-1xl cursor-pointer">
@@ -61,7 +70,7 @@
     <div class="container lg:mx-auto mx-auto my-8">
       <div class="text-left text-2xl font-bold px-5">COMMENTS</div>
       <div class="grid lg:grid-cols-2 px-5 grid-cols-1 gap-10 mt-8">
-        <comment-card v-for="comment in 2" :key="comment.id" :comment="comment" />
+        <comment-card v-for="comment in post.comments" :key="comment.id" :comment="comment" />
         <!-- <blog-detail-card /> -->
       </div>
     </div>
@@ -105,6 +114,8 @@ export default {
   },
   data() {
     return {
+      post: {},
+      uri: process.env.VUE_APP_BACKEND_IMAGE_URI,
       recentPosts: [
         {
           id: 1,
@@ -237,6 +248,13 @@ export default {
 
 <p>Now, you may have read all that I’ve said up to this point and be thinking to yourself, “I’ve done all you’ve asked me to do, my parents are simply a lost cause.”. And for some of you, that may be the truth. Here is my final advice to you: endure.</p><p>At the end of the day, you won’t be a child living with your parents forever. You’d still go back to school once this pandemic lightens, you’d soon start working, you’d move out of the house eventually. Let this comfort you. </p><p>Keep praying for your parents, continue to honour them, believe the best of them, love them and radiate Christ in your home.</p><p>More often than not, time and love would transform even the hardest of hearts and even if they don’t change, you won’t be there forever. More so, you’d have learnt more than words could ever teach, what it means to walk in love. You still win. </p><h3>Conclusion:</h3><p>At the end of the day, despite all the disputes and “fights” that may have happened growing up, almost everyone, saved or not, still looks back with love and adoration for their parents (especially when they start having kids and realize it wasn’t as easy as they thought). Few, if any, celebrate when they’re gone. So, think long term and make the most of the parental relationship you’ve received. <br>God bless you.  </p></div>`
     };
+  },
+  async mounted() {
+    let id = this.$route.params.id;
+    await this.$store.dispatch("getBlogPostById", id).then(({ data }) => {
+      this.post = data;
+      console.log(data);
+    });
   }
 };
 </script>

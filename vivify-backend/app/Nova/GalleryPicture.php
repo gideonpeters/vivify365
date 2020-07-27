@@ -46,7 +46,7 @@ class GalleryPicture extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Image::make('Image',)->prunable(),
             Text::make('Title'),
-            Textarea::make('Description'),
+            Textarea::make('Description')->nullable(),
         ];
     }
 
