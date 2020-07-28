@@ -23,6 +23,7 @@ Route::get('/blogs/{blog}', 'BlogController@show');
 
 Route::get('/sermons', 'SermonController@index');
 Route::get('/sermons/{sermon}', 'SermonController@show');
+Route::get('/sermons-featured', 'SermonController@getFeatured');
 
 Route::get('/gallery', 'GalleryPictureController@index');
 Route::get('/gallery/{gallery_picture}', 'GalleryPictureController@show');

@@ -81,7 +81,7 @@
         active-class="text-purple-700 font-bold text-1xl"
         tag="div"
         class="cursor-pointer lg:block xs:hidden sm:hidden hidden"
-        :to="{name: 'main.contact'}"
+        :to="{name: 'main.home', hash: '#contact'}"
       >
         <div class="px-2">Contact</div>
       </router-link>

@@ -9,6 +9,7 @@ class Sermon extends Model
 {
     //
     protected $appends = ['image_link', 'audio_link'];
+    protected $casts = ['is_featured' => 'boolean'];
 
     public function getImageLinkAttribute(){
         return Storage::url($this->image_url);

@@ -42,5 +42,25 @@ class SermonController extends Controller
         ], 201);
     }
 
+    public function getFeatured(Request $request)
+    {
+        //
+        $featured = Sermon::where('is_featured', true)->latest()->first();
+        
+        if(empty($featured)){
+            return response()->json([
+                'status' => true,
+                'message' => 'featured sermon not found',
+                'data' => $featured
+            ], 201);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'this is the featured sermon',
+            'data' => $featured
+        ], 201);
+    }
+
     
 }

@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Sermon extends Resource
@@ -49,6 +50,7 @@ class Sermon extends Resource
             Text::make('Title'),
             Text::make('Speaker', 'author'),
             Textarea::make('Body'),
+            Boolean::make('Featured Post?', 'is_featured'),
             File::make('File', 'audio_url')
         ];
     }

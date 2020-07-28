@@ -129,7 +129,7 @@
         </div>
       </div>
 
-      <subheader title="CONTACT US" class="mt-32" />
+      <subheader title="CONTACT US" class="mt-32" id="contact" />
       <div class="flex flex-col sm:flex-row lg:flex-row mt-12 justify-between text-left">
         <div class="flex flex-col lg:justify-start justify-center lg:items-start items-center">
           <div class="text-2xl lg:text-left text-center font-bold text-purple-700">

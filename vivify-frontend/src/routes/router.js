@@ -47,5 +47,12 @@ export default new VueRouter({
         name: 'main.contact',
         component: () => import('./../views/Contact.vue')
     }
-    ]
+    ],
+    scrollBehavior: function (to) {
+        if (to.hash) {
+            return {
+                selector: to.hash
+            }
+        }
+    },
 });
