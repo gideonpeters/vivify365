@@ -5,27 +5,24 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\MorphToMany;
-use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Blog extends Resource
+class Tag extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Blog::class;
+    public static $model = \App\Tag::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -33,7 +30,7 @@ class Blog extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title'
+        'id',
     ];
 
     /**
@@ -46,12 +43,8 @@ class Blog extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('Title'),
-            Text::make('Author'),
-            Image::make('Image', 'image_url'),
-            HasMany::make('Comments'),
-            Trix::make('Body')->withFiles('public'),
-            MorphToMany::make('Tags'),
+            Text::make('Name'),
+            MorphToMany::make('Blogs'),
         ];
     }
 
