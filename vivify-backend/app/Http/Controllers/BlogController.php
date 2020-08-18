@@ -26,7 +26,7 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         //
-        if(!empty($blog)){
+        if(empty($blog)){
             return response()->json([
                 'status' => true,
                 'message' => 'blog post not found',
@@ -37,10 +37,13 @@ class BlogController extends Controller
         
 
         $blog->load('comments');
+        $blog->append('recently_published','related_posts');
         return response()->json([
             'status' => true,
             'message' => 'this is the blog post',
-            'data' => $blog->loadCount('comments')
+            'data' => $blog->loadCount('comments'),
+            'prev_blog' => $blog->previous(),
+            'next_blog' => $blog->next(),
         ], 201);
     }
 

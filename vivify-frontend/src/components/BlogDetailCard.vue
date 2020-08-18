@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div @click="goToPage('main.blog.detail', post.id)">
     <div class="flex h-64 justify-center w-full px-5">
       <div
-        class="post-image bg-no-repeat bg-cover bg-center"
-        :style="{backgroundImage: 'url('+post.imageUrl+')'}"
+        class="post-image bg-no-repeat bg-cover bg-center bg-blue-800"
+        :style="{backgroundImage: 'url('+uri  +post.image_link+')'}"
       ></div>
       <div class="text-left post-body ml-5">
         <div class="font-bold uppercase text-2xl break-words">{{ post.title }}</div>
@@ -18,6 +18,16 @@ export default {
   props: {
     post: {
       type: Object
+    }
+  },
+  data() {
+    return {
+      uri: process.env.VUE_APP_BACKEND_IMAGE_URI
+    };
+  },
+  methods: {
+    goToPage(name, id) {
+      this.$router.push({ name: name, params: { id: id } });
     }
   }
 };

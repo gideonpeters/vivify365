@@ -12,11 +12,11 @@
           <div class="text-white lg:-ml-8 -ml-5 mt-5">
             <ShareNetwork
               network="facebook"
-              url="https://news.vuejs.org/issues/180"
-              title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
+              :url="'vivify365.org'"
+              :title="post.title ? post.title : 'Vivify blog'"
               description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-              quote="The hot reload is so fast it\'s near instant. - Evan You"
-              hashtags="vuejs,vite"
+              quote="Vivify, awakening the hearts of men to the finished work of Christ"
+              hashtags="vivify365,vivifyblog"
             >
               <div
                 class="cursor-pointer flex justify-center items-center rounded-full lg:w-16 w-10 lg:h-16 h-10 bg-purple-800"
@@ -41,30 +41,43 @@
     <div class="flex justify-start text-justify container mx-auto px-10 py-10 bg-white">
       <div v-html="post.body" class="leading-loose text-2xl"></div>
     </div>
-    <div class="flex container mx-auto justify-between">
-      <div class="text-gray-600 text-1xl cursor-pointer">
-        <i class="mdi mdi-arrow-left"></i> Help! Bethel Designs na die
+    <div class="flex container mx-auto justify-between w-screen">
+      <div class="w-1/2 text-gray-600 text-1xl cursor-pointer text-left">
+        <div v-if="prevPost" @click="goToBlog(prevPost.id)">
+          <i class="mdi mdi-arrow-left"></i>
+          {{prevPost.title}}
+        </div>
       </div>
-      <div class="text-gray-600 text-1xl cursor-pointer">
-        Help! Bethel Designs na die
-        <i class="mdi mdi-arrow-right"></i>
+      <div class="w-1/2 text-gray-600 text-1xl cursor-pointer text-right">
+        <div v-if="nextPost" @click="goToBlog(nextPost.id)">
+          {{nextPost.title}}
+          <i class="mdi mdi-arrow-right"></i>
+        </div>
       </div>
     </div>
 
     <div class="container lg:mx-auto mx-auto my-8">
       <div class="text-left text-2xl font-bold px-5">RECENTLY PUBLISHED</div>
       <div class="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-8">
-        <blog-detail-card v-for="post in recentPosts" :key="post.id" :post="post" />
+        <blog-detail-card v-for="post in post.recently_published" :key="post.id" :post="post" />
         <!-- <blog-detail-card /> -->
       </div>
+      <div
+        class="text-left px-5"
+        v-if="post.recently_published && post.recently_published.length == 0"
+      >No recent posts available</div>
     </div>
 
     <div class="container lg:mx-auto mx-auto my-8">
       <div class="text-left text-2xl font-bold px-5">RELATED POSTS</div>
       <div class="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-8">
-        <blog-detail-card v-for="post in recentPosts" :key="post.id" :post="post" />
+        <blog-detail-card v-for="post in post.related_posts" :key="post.id" :post="post" />
         <!-- <blog-detail-card /> -->
       </div>
+      <div
+        class="text-left px-5"
+        v-if="post.related_posts && post.related_posts.length == 0"
+      >No related posts available</div>
     </div>
 
     <div class="container lg:mx-auto mx-auto my-8">
@@ -73,6 +86,7 @@
         <comment-card v-for="comment in post.comments" :key="comment.id" :comment="comment" />
         <!-- <blog-detail-card /> -->
       </div>
+      <div class="text-left px-5" v-if="post.comments && post.comments.length == 0">No comments yet</div>
     </div>
 
     <div class="container lg:mx-auto mx-auto my-8">
@@ -80,7 +94,8 @@
       <div class="grid lg:grid-cols-1 px-5 grid-cols-1 gap-10 mt-8">
         <div class="flex">
           <textarea
-            class="border border-gray-500 w-full"
+            v-model="body"
+            class="border border-gray-500 w-full py-4 px-3"
             name="comment"
             id="comment-section"
             cols="30"
@@ -92,13 +107,28 @@
           <input
             class="border border-gray-500 w-full py-4 px-3"
             type="text"
+            v-model="name"
             placeholder="Full Name"
           />
           <!-- </div> -->
           <!-- <div> -->
-          <input class="border border-gray-500 w-full py-4 px-3" type="text" placeholder="Email" />
+          <input
+            v-model="email"
+            class="border border-gray-500 w-full py-4 px-3"
+            type="text"
+            placeholder="Email"
+          />
           <!-- </div> -->
         </div>
+      </div>
+      <div class="mt-5 mb-32">
+        <custom-button
+          v-if="name && email && body"
+          text="POST COMMENT"
+          :onClick="()=>comment()"
+          sm
+          rounded
+        />
       </div>
     </div>
   </div>
@@ -107,15 +137,24 @@
 <script>
 import BlogDetailCard from "@/components/BlogDetailCard.vue";
 import CommentCard from "@/components/CommentCard.vue";
+import CustomButton from "@/components/CustomButton.vue";
+
 export default {
   components: {
     BlogDetailCard,
-    CommentCard
+    CommentCard,
+    CustomButton
   },
   data() {
     return {
       post: {},
       uri: process.env.VUE_APP_BACKEND_IMAGE_URI,
+      recentlyPublished: [],
+      prevPost: {},
+      nextPost: {},
+      name: "",
+      email: "",
+      body: "",
       recentPosts: [
         {
           id: 1,
@@ -249,12 +288,51 @@ export default {
 <p>Now, you may have read all that I’ve said up to this point and be thinking to yourself, “I’ve done all you’ve asked me to do, my parents are simply a lost cause.”. And for some of you, that may be the truth. Here is my final advice to you: endure.</p><p>At the end of the day, you won’t be a child living with your parents forever. You’d still go back to school once this pandemic lightens, you’d soon start working, you’d move out of the house eventually. Let this comfort you. </p><p>Keep praying for your parents, continue to honour them, believe the best of them, love them and radiate Christ in your home.</p><p>More often than not, time and love would transform even the hardest of hearts and even if they don’t change, you won’t be there forever. More so, you’d have learnt more than words could ever teach, what it means to walk in love. You still win. </p><h3>Conclusion:</h3><p>At the end of the day, despite all the disputes and “fights” that may have happened growing up, almost everyone, saved or not, still looks back with love and adoration for their parents (especially when they start having kids and realize it wasn’t as easy as they thought). Few, if any, celebrate when they’re gone. So, think long term and make the most of the parental relationship you’ve received. <br>God bless you.  </p></div>`
     };
   },
+  computed: {
+    pageId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    goToBlog(id) {
+      this.$router.replace({
+        name: "main.blog.detail",
+        params: { id: id }
+      });
+    },
+    async getBlogPost() {
+      let id = this.$route.params.id;
+      await this.$store.dispatch("getBlogPostById", id).then(res => {
+        this.post = res.data;
+        this.prevPost = res.prev_blog;
+        this.nextPost = res.next_blog;
+        // console.log(data);
+      });
+    },
+    async comment() {
+      let id = this.$route.params.id;
+      let body = {
+        blog_id: id,
+        name: this.name,
+        email: this.email,
+        body: this.body
+      };
+      await this.$store.dispatch("commentOnPost", body).then(res => {
+        this.getBlogPost();
+        this.email = "";
+        this.name = "";
+        this.body = "";
+        // console.log(data);
+      });
+    }
+  },
+  watch: {
+    pageId() {
+      this.getBlogPost();
+    }
+  },
   async mounted() {
-    let id = this.$route.params.id;
-    await this.$store.dispatch("getBlogPostById", id).then(({ data }) => {
-      this.post = data;
-      console.log(data);
-    });
+    this.getBlogPost();
   }
 };
 </script>

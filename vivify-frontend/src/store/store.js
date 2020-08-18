@@ -19,6 +19,9 @@ export default new Vuex.Store({
             //     throw error;
             // }
         },
+        async commentOnPost(context, body) {
+            await axios.post('comment', body);
+        },
         async getBlogPostById(context, id) {
             let res = await axios.get(`blogs/${id}`);
             return res.data

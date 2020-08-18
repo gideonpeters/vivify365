@@ -21,9 +21,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/blogs', 'BlogController@index');
 Route::get('/blogs/{blog}', 'BlogController@show');
 
+Route::post('/comment', 'CommentController@store');
+
+
 Route::get('/sermons', 'SermonController@index');
 Route::get('/sermons/{sermon}', 'SermonController@show');
 Route::get('/sermons-featured', 'SermonController@getFeatured');
+
+Route::get('/devotionals', 'DevotionalController@index');
+Route::get('/devotionals/{devotional}', 'DevotionalController@show');
+Route::get('/devotionals/all/{devotion_id}', 'DevotionalController@indexByCategory');
+Route::get('/devotionals-featured', 'DevotionalController@getFeatured');
 
 Route::get('/gallery', 'GalleryPictureController@index');
 Route::get('/gallery/{gallery_picture}', 'GalleryPictureController@show');

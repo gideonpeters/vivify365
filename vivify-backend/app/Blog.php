@@ -12,19 +12,37 @@ use App\Tag;
 class Blog extends Model
 {
     //
-    protected $appends = ['image_link', 'prev_blog', 'next_blog' ];
+    protected $appends = ['image_link', ];
 
-    public function getPrevBlogAttribute(){
+    public function previous(){
 
-        $prevBlog = DB::table('blogs')->where('id', '<', $this->id)->first();
+        $prevBlog = Blog::where('id', '<', $this->id)->first();
         return empty($prevBlog) ? null : $prevBlog;
 
     }
 
-    public function getNextBlogAttribute(){
-        $nextBlog = DB::table('blogs')->where('id', '>', $this->id)->first();
+    public function next(){
+        $nextBlog = Blog::where('id', '>', $this->id)->first();
 
         return empty($nextBlog) ? null : $nextBlog;
+
+    }
+
+    public function getRecentlyPublishedAttribute(){
+        $latest = Blog::where('id', '!=', $this->id)->take(2)->latest()->get();
+
+        return $latest;
+
+    }
+
+    public function getRelatedPostsAttribute(){
+        $related = Blog::whereHas('tags', function ($query){
+            $tagIds = $this->tags()->pluck('tags.id')->all();
+            $query->whereIn('tags.id', $tagIds);
+        })->where('id', '<>', $this->id)->take(2)->latest()->get();
+
+
+        return $related;
 
     }
 
