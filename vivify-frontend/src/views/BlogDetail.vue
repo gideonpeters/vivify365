@@ -317,7 +317,7 @@ export default {
         email: this.email,
         body: this.body
       };
-      await this.$store.dispatch("commentOnPost", body).then(res => {
+      await this.$store.dispatch("commentOnPost", body).then(() => {
         this.getBlogPost();
         this.email = "";
         this.name = "";

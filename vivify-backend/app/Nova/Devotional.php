@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Devotional extends Resource
@@ -48,7 +49,8 @@ class Devotional extends Resource
             Text::make('Title'),
             Trix::make('Body'),
             Image::make('Image',)->prunable(),
-            BelongsTo::make('Devotion')
+            BelongsTo::make('Devotion'),
+            MorphToMany::make('Tags'),
 
 
         ];

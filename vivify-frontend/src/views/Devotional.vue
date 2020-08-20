@@ -48,9 +48,7 @@
     </div>
     <!-- <div class="container lg:mx-auto mx-auto px-5 mt-8 flex justify-around"> -->
     <div class="container mx-auto grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-8 px-5">
-      <blog-card />
-      <blog-card />
-      <blog-card />
+      <blog-card :post="devotional" v-for="devotional in devotionals" :key="devotional.id" />
     </div>
     <!-- </div> -->
     <div class="container lg:mx-auto mx-auto px-5 w-4/5 mx-auto flex justify-center mt-8">
@@ -83,8 +81,38 @@ export default {
       perPage: 6,
       limit: 5,
       disabled: false,
-      currentPage: 1
+      currentPage: 1,
+      devotionals: []
     };
+  },
+  methods: {
+    async getDevotionals(pageNumber) {
+      // try {
+      await this.$store
+        .dispatch("getDevotionals", pageNumber)
+        .then(({ data }) => {
+          // this.currentPage = data.current_page;
+          this.perPage = data.per_page;
+          this.totalRows = data.total;
+          // console.log(data);
+          this.devotionals = data.data;
+        });
+      // } catch (error) {
+      //   throw error;
+      // }
+    }
+  },
+  watch: {
+    currentPage(v) {
+      this.getDevotionals(v);
+    }
+  },
+  async mounted() {
+    // try {
+    await this.getDevotionals();
+    // } catch (error) {
+    //   throw error;
+    // }
   }
 };
 </script>

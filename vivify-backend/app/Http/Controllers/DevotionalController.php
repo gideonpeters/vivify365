@@ -16,7 +16,7 @@ class DevotionalController extends Controller
     public function index(Request $request)
     {
         //
-        $devotionals = Devotional::all();
+        $devotionals = Devotional::with('tags')->paginate(6);
 
         if(empty($devotionals)){
             return response()->json([

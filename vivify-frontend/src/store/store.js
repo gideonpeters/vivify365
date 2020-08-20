@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        blogs: []
+        blogs: [],
+        devotionals: [],
     },
     actions: {
         async getBlogPosts({ state }, page) {
@@ -24,6 +25,12 @@ export default new Vuex.Store({
         },
         async getBlogPostById(context, id) {
             let res = await axios.get(`blogs/${id}`);
+            return res.data
+        },
+        async getDevotionals({ state }, page) {
+            let res = await axios.get(`devotionals?page=${page}`);
+            // console.table(res.data);
+            state.devotionals = res.data.data
             return res.data
         }
     }

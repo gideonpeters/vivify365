@@ -45,6 +45,7 @@ class Tag extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('Name'),
             MorphToMany::make('Blogs'),
+            MorphToMany::make('Devotionals'),
         ];
     }
 

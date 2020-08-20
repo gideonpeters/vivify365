@@ -8,7 +8,9 @@
     <div class="h-56 lg:w-11/12 py-4 -mt-72 w-11/12 z-10 shadow-md bg-white">
       <div class="border-l-4 border-orange-500 py-2">
         <div class="flex px-10 items-center">
-          <div class="font-bold text-gray-600 text-sm">{{post.tag ? post.tag : 'FAITH'}}</div>
+          <div
+            class="font-bold text-gray-600 text-sm"
+          >{{ post.tags.length > 0? post.tags[0] : 'FAITH'}}</div>
           <div class="px-3 text-sm">5 MIN READ</div>
         </div>
       </div>
