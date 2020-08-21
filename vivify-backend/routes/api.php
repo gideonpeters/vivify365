@@ -28,6 +28,11 @@ Route::get('/sermons', 'SermonController@index');
 Route::get('/sermons/{sermon}', 'SermonController@show');
 Route::get('/sermons-featured', 'SermonController@getFeatured');
 
+Route::get('/podcasts', 'PodcastController@index');
+Route::get('/podcasts/{podcast}', 'PodcastController@show');
+Route::get('/podcasts-featured', 'PodcastController@getFeatured');
+
+
 Route::get('/devotionals', 'DevotionalController@index');
 Route::get('/devotionals/{devotional}', 'DevotionalController@show');
 Route::get('/devotionals/all/{devotion_id}', 'DevotionalController@indexByCategory');

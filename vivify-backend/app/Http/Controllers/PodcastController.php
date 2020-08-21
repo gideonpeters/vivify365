@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class PodcastController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         //
+        $podcasts = Podcast::paginate(6);
+        return response()->json([
+            'status' => true,
+            'message' => 'these are all the Podcasts',
+            'data' => $podcasts
+        ], 201);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Podcast  $podcast
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Podcast $podcast)
     {
         //
+        if(empty($podcast)){
+            return response()->json([
+                'status' => true,
+                'message' => 'podcast post not found',
+                'data' => $podcast
+            ], 201);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'this is the podcast post',
+            'data' => $podcast
+        ], 201);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Podcast  $podcast
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Podcast $podcast)
+    public function getFeatured(Request $request)
     {
         //
+        $featured = Podcast::where('is_featured', true)->latest()->first();
+        
+        if(empty($featured)){
+            return response()->json([
+                'status' => true,
+                'message' => 'featured podcast not found',
+                'data' => $featured
+            ], 201);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'this is the featured podcast',
+            'data' => $featured
+        ], 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Podcast  $podcast
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Podcast $podcast)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Podcast  $podcast
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Podcast $podcast)
-    {
-        //
-    }
 }

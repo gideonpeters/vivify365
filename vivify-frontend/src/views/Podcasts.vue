@@ -82,8 +82,7 @@
         </div>
       </div>
       <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 gap-10">
-        <podcast-card v-for="i in 6" :key="i" isPodcast />
-        
+        <podcast-card v-for="podcast in podcasts" :key="podcast.id" :item="podcast" isPodcast />
       </div>
       <div class="container w-4/5 mx-auto flex justify-center mt-8">
         <t-pagination
@@ -114,8 +113,52 @@ export default {
       perPage: 6,
       limit: 5,
       disabled: false,
-      currentPage: 1
+      currentPage: 1,
+      podcasts: []
     };
+  },
+  methods: {
+    async getPodcasts(pageNumber) {
+      // try {
+      await this.$store.dispatch("getPodcasts", pageNumber).then(({ data }) => {
+        // this.currentPage = data.current_page;
+        this.perPage = data.per_page;
+        this.totalRows = data.total;
+        // console.log(data);
+        this.podcasts = data.data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getPodcastsByCategory(categoryId) {
+      // try {
+      await this.$store
+        .dispatch("getPodcastsByCategory", categoryId)
+        .then(({ data }) => {
+          // this.currentPage = data.current_page;
+          this.perPage = data.per_page;
+          this.totalRows = data.total;
+          // console.log(data);
+          this.podcasts = data.data;
+        });
+      // } catch (error) {
+      //   throw error;
+      // }
+    }
+  },
+  watch: {
+    currentPage(v) {
+      this.getPodcasts(v);
+    }
+  },
+  async mounted() {
+    // try {
+    await this.getPodcasts();
+
+    // } catch (error) {
+    //   throw error;
+    // }
   }
 };
 </script>

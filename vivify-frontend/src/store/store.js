@@ -9,7 +9,8 @@ export default new Vuex.Store({
         blogs: [],
         devotionals: [],
         devotions: [],
-        sermons: []
+        sermons: [],
+        podcasts: []
     },
     actions: {
         async getBlogPosts({ state }, page) {
@@ -55,6 +56,22 @@ export default new Vuex.Store({
         },
         async getSermonById(context, id) {
             let res = await axios.get(`sermons/${id}`);
+            return res.data
+        },
+        async getPodcasts({ state }, page) {
+            let res = await axios.get(`podcasts?page=${page}`);
+            // console.table(res.data);
+            state.podcasts = res.data.data
+            return res.data
+        },
+        async getPodcastById(context, id) {
+            let res = await axios.get(`podcasts/${id}`);
+            return res.data
+        },
+        async getPodcastsByCategory({ state }, id) {
+            let res = await axios.get(`podcasts/${id}`);
+            // console.table(res.data);
+            state.podcasts = res.data.data
             return res.data
         },
     }
