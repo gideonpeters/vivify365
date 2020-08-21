@@ -20,6 +20,7 @@ class CreateSermonsTable extends Migration
             $table->string('audio_url')->nullable();
             $table->string('image_url')->nullable();
             $table->text('body');
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }

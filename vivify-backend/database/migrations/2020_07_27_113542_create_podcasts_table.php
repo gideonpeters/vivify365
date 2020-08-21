@@ -16,9 +16,11 @@ class CreatePodcastsTable extends Migration
         Schema::create('podcasts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->string('audio_url')->nullable();
             $table->text('body')->nullable();
+            $table->boolean('is_featured')->default(false);
+
             $table->timestamps();
         });
     }
