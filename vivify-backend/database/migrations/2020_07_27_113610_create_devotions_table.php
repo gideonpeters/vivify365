@@ -16,6 +16,8 @@ class CreateDevotionsTable extends Migration
         Schema::create('devotions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

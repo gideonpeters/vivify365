@@ -44,7 +44,7 @@ class DevotionalController extends Controller
                 'data' => null
             ], 201);
         }
-        $devotionals = Devotional::where('devotion_id', '=', $devotion_id)->get();
+        $devotionals = Devotional::where('devotion_id', '=', $devotion_id)->paginate(6);
 
         return response()->json([
             'status' => true,

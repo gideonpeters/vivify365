@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         blogs: [],
         devotionals: [],
+        devotions: [],
     },
     actions: {
         async getBlogPosts({ state }, page) {
@@ -31,6 +32,18 @@ export default new Vuex.Store({
             let res = await axios.get(`devotionals?page=${page}`);
             // console.table(res.data);
             state.devotionals = res.data.data
+            return res.data
+        },
+        async getDevotionalsByCategory({ state }, id) {
+            let res = await axios.get(`devotionals/all/${id}`);
+            // console.table(res.data);
+            state.devotionals = res.data.data
+            return res.data
+        },
+        async getDevotions({ state }) {
+            let res = await axios.get(`devotions`);
+            // console.table(res.data);
+            state.devotions = res.data.data
             return res.data
         }
     }

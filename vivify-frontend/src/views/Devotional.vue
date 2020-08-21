@@ -23,24 +23,14 @@
       <div class="lg:mt-0 mt-5">
         <t-dropdown class="w-full" text="Devotional Categories">
           <ul>
-            <li>
-              <a
-                href="#"
+            <li
+              v-for="devotion in devotions"
+              :key="devotion.id"
+              @click="getDevotionalsByCategory(devotion.id)"
+            >
+              <div
                 class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-              >Recent</a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-              >Popular</a>
-            </li>
-            <li class="border-b"></li>
-            <li>
-              <a
-                href="#"
-                class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-              >Faith</a>
+              >{{devotion.title}}</div>
             </li>
           </ul>
         </t-dropdown>
@@ -87,7 +77,8 @@ export default {
       limit: 5,
       disabled: false,
       currentPage: 1,
-      devotionals: []
+      devotionals: [],
+      devotions: []
     };
   },
   methods: {
@@ -105,16 +96,46 @@ export default {
       // } catch (error) {
       //   throw error;
       // }
+    },
+    async getDevotionalsByCategory(devotionId) {
+      // try {
+      await this.$store
+        .dispatch("getDevotionalsByCategory", devotionId)
+        .then(({ data }) => {
+          // this.currentPage = data.current_page;
+          this.perPage = data.per_page;
+          this.totalRows = data.total;
+          console.log(data);
+          this.devotionals = data.data;
+        });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getDevotions() {
+      // try {
+      await this.$store.dispatch("getDevotions").then(({ data }) => {
+        // this.currentPage = data.current_page;
+
+        console.log(data);
+        this.devotions = data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
     }
   },
   watch: {
     currentPage(v) {
       this.getDevotionals(v);
+      this.getDevotions();
     }
   },
   async mounted() {
     // try {
     await this.getDevotionals();
+    await this.getDevotions();
+
     // } catch (error) {
     //   throw error;
     // }
