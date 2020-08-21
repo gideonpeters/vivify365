@@ -42,21 +42,24 @@
       <div
         class="grid xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 flex sm:items-start lg:items-center items-center mt-12"
       >
-        <mini-blog-card imageLink="https://pbs.twimg.com/media/EUIfS9yWsAE3rAC.jpg" />
-        <mini-blog-card imageLink="https://pbs.twimg.com/media/DeDUNENX4AAYkIE.jpg:large" double />
+        <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+        <mini-blog-card :item="getBlog(1)" :imageLink="getBlog(1).image_link" double />
         <mini-blog-card
-          imageLink="https://pbs.twimg.com/media/DeDUNENX4AAYkIE.jpg:large"
+          :item="getBlog(2)"
+          :imageLink="getBlog(2).image_link"
           class="lg:hidden block"
         />
         <div class="flex flex-col">
-          <mini-blog-card imageLink="https://pbs.twimg.com/media/ER3-w87XYAEV1NA.jpg" />
+          <mini-blog-card :item="getBlog(3)" :imageLink="getBlog(3).image_link" />
           <mini-blog-card
-            imageLink="https://pbs.twimg.com/media/ERDZyniXYAAxhlO.jpg"
+            :item="getBlog(4)"
+            :imageLink="getBlog(4).image_link"
             class="lg:block hidden"
           />
         </div>
         <mini-blog-card
-          imageLink="https://vivify365.org/blog/wp-content/uploads/2020/06/IMG-20200604-WA0002-738x423.jpg"
+          :item="getBlog(5)"
+          :imageLink="getBlog(5).image_link"
           class="lg:block sm:hidden hidden"
         />
       </div>
@@ -204,10 +207,35 @@ export default {
     QuoteCard,
     DevotionCard
   },
+  data() {
+    return {
+      blogs: []
+    };
+  },
+
   methods: {
+    getBlog(ix) {
+      return this.blogs[ix] ? this.blogs[ix] : {};
+    },
     goToPage(name, id) {
       this.$router.push({ name: name, params: { id: id } });
+    },
+    async getBlogPosts() {
+      // try {
+      await this.$store.dispatch("getBlogPosts").then(({ data }) => {
+        // this.currentPage = data.current_page;
+        // this.perPage = data.per_page;
+        // this.totalRows = data.total;
+        // console.log(data);
+        this.blogs = data.data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
     }
+  },
+  async mounted() {
+    await this.getBlogPosts();
   }
 };
 </script>
