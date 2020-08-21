@@ -14,9 +14,9 @@
               network="facebook"
               :url="'vivify365.org'"
               :title="post.title ? post.title : 'Vivify blog'"
-              description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-              quote="Vivify, awakening the hearts of men to the finished work of Christ"
-              hashtags="vivify365,vivifyblog"
+              :description="post.title"
+              :quote="`${post.title}`"
+              hashtags="vivify365, vivifyblog"
             >
               <div
                 class="cursor-pointer flex justify-center items-center rounded-full lg:w-16 w-10 lg:h-16 h-10 bg-purple-800"

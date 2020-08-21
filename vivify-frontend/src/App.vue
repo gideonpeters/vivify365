@@ -17,7 +17,7 @@
           class="cursor-pointer text-white text-3xl"
           :to="{name: route.routeName}"
         >
-          <div class="px-2">{{route.name}}</div>
+          <div class="px-2" @click="showMiniNav = false">{{route.name}}</div>
         </router-link>
       </ul>
     </div>
@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       showMiniNav: false,
+      script: "",
       routes: [
         { name: "Home", routeName: "main.home" },
         { name: "Blog", routeName: "main.blog" },
@@ -65,13 +66,28 @@ export default {
   },
   mounted() {
     let recaptchaScript = document.createElement("script");
-    recaptchaScript.setAttribute(
-      "src",
-      "https://av1611.com/verseclick/verseclick.js"
-    );
-    recaptchaScript.setAttribute("type", "text/javascript");
-    console.log("hi");
-    document.head.appendChild(recaptchaScript);
+    recaptchaScript.src = "https://av1611.com/verseclick/verseclick.js";
+    recaptchaScript.type = "text/javascript";
+    // recaptchaScript.setAttribute(
+    //   "src",
+    //   "https://av1611.com/verseclick/verseclick.js"
+    // );
+
+    // let recaptchaScript2 = document.createElement("script");
+    // recaptchaScript2.src =
+    //   "https://www.blueletterbible.org/assets/scripts/blbToolTip/BLB_ScriptTagger-min.js";
+    // recaptchaScript2.type = "text/javascript";
+
+    // recaptchaScript2.setAttribute(
+    //   "src",
+    //   "https://www.blueletterbible.org/assets/scripts/blbToolTip/BLB_ScriptTagger-min.js"
+    // );
+
+    // recaptchaScript.setAttribute("type", "text/javascript");
+    // recaptchaScript2.setAttribute("type", "text/javascript");
+    // console.log("Jesus loves you");
+    document.head.append(recaptchaScript);
+    // document.head.append(recaptchaScript2);
   }
 };
 </script>
