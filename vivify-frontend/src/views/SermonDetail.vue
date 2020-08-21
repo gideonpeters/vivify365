@@ -37,9 +37,9 @@
           </div>
         </div>
         <div class="xl:w-3/5 lg:w-4/5 w-full">
-          <vue-plyr download>
-            <audio controls>
-              <source download :src="audioLink" type="audio/mp3" />
+          <vue-plyr>
+            <audio controls ref="player">
+              <source :src="audioLink" type="audio/mp3" />
               <!-- <source
                 src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
                 type="audio/ogg"
@@ -56,11 +56,10 @@
       <div v-html="sermon.body" class="leading-loose text-2xl"></div>
     </div>
 
-    <div class="container lg:mx-auto mx-auto my-8">
+    <!-- <div class="container lg:mx-auto mx-auto my-8">
       <div class="text-left text-2xl font-bold px-5">COMMENTS</div>
       <div class="grid lg:grid-cols-2 px-5 grid-cols-1 gap-10 mt-8">
         <comment-card v-for="comment in sermon.comments" :key="comment.id" :comment="comment" />
-        <!-- <blog-detail-card /> -->
       </div>
       <div
         class="text-left px-5"
@@ -82,22 +81,19 @@
           ></textarea>
         </div>
         <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
-          <!-- <div> -->
           <input
             class="border border-gray-500 w-full py-4 px-3"
             type="text"
             v-model="name"
             placeholder="Full Name"
           />
-          <!-- </div> -->
-          <!-- <div> -->
+          
           <input
             v-model="email"
             class="border border-gray-500 w-full py-4 px-3"
             type="text"
             placeholder="Email"
           />
-          <!-- </div> -->
         </div>
       </div>
       <div class="mt-5 mb-32">
@@ -109,19 +105,19 @@
           rounded
         />
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 // import BlogDetailCard from "@/components/BlogDetailCard.vue";
-import CommentCard from "@/components/CommentCard.vue";
+// import CommentCard from "@/components/CommentCard.vue";
 import CustomButton from "@/components/CustomButton.vue";
 
 export default {
   components: {
     // BlogDetailCard,
-    CommentCard,
+    // CommentCard,
     CustomButton
   },
   data() {
@@ -203,8 +199,9 @@ export default {
     }
   },
   watch: {
-    pageId() {
-      //   this.getSermon();
+    audioLink() {
+      // console.log(v);
+      this.$refs.player.load();
     }
   },
   async mounted() {
