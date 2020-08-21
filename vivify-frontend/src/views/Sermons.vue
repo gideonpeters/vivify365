@@ -82,7 +82,7 @@
         </div>
       </div>
       <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 gap-10">
-        <podcast-card v-for="i in 6" :key="i" isSermon />
+        <podcast-card v-for="sermon in sermons" :key="sermon.id" isSermon :item="sermon" />
       </div>
       <div class="container w-4/5 mx-auto flex justify-center mt-8">
         <t-pagination
@@ -107,14 +107,59 @@ export default {
     CustomButton,
     PodcastCard
   },
+
   data() {
     return {
       totalRows: 100,
       perPage: 6,
       limit: 5,
       disabled: false,
-      currentPage: 1
+      currentPage: 1,
+      sermons: []
     };
+  },
+  methods: {
+    async getSermons(pageNumber) {
+      // try {
+      await this.$store.dispatch("getSermons", pageNumber).then(({ data }) => {
+        // this.currentPage = data.current_page;
+        this.perPage = data.per_page;
+        this.totalRows = data.total;
+        // console.log(data);
+        this.sermons = data.data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getSermonsByCategory(categoryId) {
+      // try {
+      await this.$store
+        .dispatch("getSermonsByCategory", categoryId)
+        .then(({ data }) => {
+          // this.currentPage = data.current_page;
+          this.perPage = data.per_page;
+          this.totalRows = data.total;
+          console.log(data);
+          this.devotionals = data.data;
+        });
+      // } catch (error) {
+      //   throw error;
+      // }
+    }
+  },
+  watch: {
+    currentPage(v) {
+      this.getSermons(v);
+    }
+  },
+  async mounted() {
+    // try {
+    await this.getSermons();
+
+    // } catch (error) {
+    //   throw error;
+    // }
   }
 };
 </script>

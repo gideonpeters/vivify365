@@ -15,7 +15,7 @@ class SermonController extends Controller
     public function index()
     {
         //
-        $sermons = Sermon::paginate(2);
+        $sermons = Sermon::paginate(6);
         return response()->json([
             'status' => true,
             'message' => 'these are all the Sermons',

@@ -3,7 +3,7 @@
     <div class="podcast-image relative" @click="goToPage">
       <div
         class="h-64 z-0 relative bg-center bg-cover bg-no-repeat bg-blue-400"
-        :style="{backgroundImage: 'url('+'https://cdn-images-1.listennotes.com/podcasts/the-vivify-podcast/are-you-ready-for-season-2-4A6TJQlSavk-wp8nZEIrcDB.1400x1400.jpg'+')'}"
+        :style="{backgroundImage: 'url('+uri+item.image_link+')'}"
       >
         <div
           class="cursor-pointer w-20 h-20 flex justify-center items-center absolute bottom-0 bg-white"
@@ -17,15 +17,15 @@
         class="w-full h-3/4 p-5 z-10 border-t border-gray-500 bg-center bg-cover bg-no-repeat bg-white"
       >
         <div class="flex">
-          <div class="text-2xl sm:text-2xl text-left font-bold text-purple-700">CHRIST IS MY SAVIOUR</div>
+          <div
+            class="text-2xl sm:text-2xl text-left font-bold text-purple-700 uppercase"
+          >{{item.title}}</div>
         </div>
-        <div
-          class="text-left multiline"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius dolorem laboriosam, placeat odio quas expedita porro voluptatibus laborum quasi harum minima illo, obcaecati aperiam exercitationem commodi mollitia recusandae ab blanditiis!</div>
+        <div class="text-left multiline">{{item.body}}</div>
         <div class="flex lg:pt-5 pt-2 items-center">
           <div class="lg:w-16 w-10 h-10 lg:h-16 rounded-full border border-gray-500"></div>
           <div class="text-left pl-5">
-            <div class="font-bold text-md">Bethel Ofuyatan</div>
+            <div class="font-bold text-md">{{item.author}}</div>
             <div class="text-sm">25 mins</div>
           </div>
         </div>
@@ -49,12 +49,17 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      uri: process.env.VUE_APP_BACKEND_IMAGE_URI
+    };
+  },
   methods: {
     goToPage() {
       let route = this.isSermon
         ? "main.sermons.detail"
         : "main.podcasts.detail";
-      this.$router.push({ name: route, params: { id: 1 } });
+      this.$router.push({ name: route, params: { id: this.item.id } });
     }
   }
 };
