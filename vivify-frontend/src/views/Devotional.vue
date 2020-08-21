@@ -48,7 +48,12 @@
     </div>
     <!-- <div class="container lg:mx-auto mx-auto px-5 mt-8 flex justify-around"> -->
     <div class="container mx-auto grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mt-8 px-5">
-      <blog-card :post="devotional" v-for="devotional in devotionals" :key="devotional.id" />
+      <blog-card
+        isDevotional
+        :post="devotional"
+        v-for="devotional in devotionals"
+        :key="devotional.id"
+      />
     </div>
     <!-- </div> -->
     <div class="container lg:mx-auto mx-auto px-5 w-4/5 mx-auto flex justify-center mt-8">

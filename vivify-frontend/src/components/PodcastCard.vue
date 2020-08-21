@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="podcast-image relative">
+    <div class="podcast-image relative" @click="goToPage">
       <div
         class="h-64 z-0 relative bg-center bg-cover bg-no-repeat bg-blue-400"
         :style="{backgroundImage: 'url('+'https://cdn-images-1.listennotes.com/podcasts/the-vivify-podcast/are-you-ready-for-season-2-4A6TJQlSavk-wp8nZEIrcDB.1400x1400.jpg'+')'}"
@@ -34,6 +34,31 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    isSermon: {
+      type: Boolean,
+      default: false
+    },
+    isPodcast: {
+      type: Boolean,
+      default: false
+    },
+    item: {
+      type: Object
+    }
+  },
+  methods: {
+    goToPage() {
+      let route = this.isSermon
+        ? "main.sermons.detail"
+        : "main.podcasts.detail";
+      this.$router.push({ name: route, params: { id: 1 } });
+    }
+  }
+};
+</script>
 <style lang="scss" scoped>
 .multiline {
   display: -webkit-box;

@@ -28,14 +28,29 @@ export default new VueRouter({
         component: () => import('./../views/Devotional.vue')
     },
     {
+        path: '/devotional/:id',
+        name: 'main.devotional.detail',
+        component: () => import('./../views/DevotionalDetail.vue')
+    },
+    {
         path: '/podcasts',
         name: 'main.podcasts',
         component: () => import('./../views/Podcasts.vue')
     },
     {
+        path: '/podcasts/:id',
+        name: 'main.podcasts.detail',
+        component: () => import('./../views/PodcastDetail.vue')
+    },
+    {
         path: '/sermons',
         name: 'main.sermons',
         component: () => import('./../views/Sermons.vue')
+    },
+    {
+        path: '/sermons/:id',
+        name: 'main.sermons.detail',
+        component: () => import('./../views/SermonDetail.vue')
     },
     {
         path: '/speakup',
@@ -54,5 +69,6 @@ export default new VueRouter({
                 selector: to.hash
             }
         }
+        return { x: 0, y: 0 };
     },
 });

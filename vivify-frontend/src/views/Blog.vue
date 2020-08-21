@@ -48,7 +48,7 @@
     </div>
     <!-- <div class=" flex justify-around"> -->
     <div class="container lg:mx-auto mt-8 px-5 grid lg:grid-cols-3 grid-cols-1 gap-6">
-      <blog-card v-for="post in posts" :key="post.id" :post="post" />
+      <blog-card isBlog v-for="post in posts" :key="post.id" :post="post" />
       <!-- <blog-card />
       <blog-card />-->
     </div>

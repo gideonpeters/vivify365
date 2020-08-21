@@ -82,9 +82,8 @@
         </div>
       </div>
       <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-10 gap-10">
-        <podcast-card />
-        <podcast-card />
-        <podcast-card />
+        <podcast-card v-for="i in 6" :key="i" isPodcast />
+        
       </div>
       <div class="container w-4/5 mx-auto flex justify-center mt-8">
         <t-pagination

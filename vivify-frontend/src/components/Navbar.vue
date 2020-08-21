@@ -37,7 +37,7 @@
         />
       </div>
 
-      <t-dropdown
+      <!-- <t-dropdown
         class="lg:block xs:hidden sm:hidden hidden"
         :button-props="{ baseClass: 'focus:outline-none hover:bg-white flex items-center rounded border border-none' }"
         text="Resources"
@@ -57,16 +57,9 @@
             class="cursor-pointer lg:block xs:hidden sm:hidden hidden block no-underline px-4 py-2 hover:bg-purple-200 hover:text-white"
             :to="{name: 'main.sermons'}"
           >Sermons</router-link>
-          <!-- <router-link
-            exact
-            active-class="text-purple-700 font-bold text-1xl"
-            tag="li"
-            class="cursor-pointer lg:block xs:hidden sm:hidden hidden block no-underline px-4 py-2 hover:bg-purple-200 hover:text-white"
-            :to="{name: 'main.podcasts'}"
-          >Comics</router-link>-->
+          
         </ul>
       </t-dropdown>
-      <!-- </router-link> -->
       <router-link
         exact
         active-class="text-purple-700 font-bold text-1xl"
@@ -75,7 +68,21 @@
         :to="{name: 'main.speakup'}"
       >
         <div class="px-2">Speak Up</div>
-      </router-link>
+      </router-link>-->
+      <router-link
+        exact
+        active-class="text-purple-700 font-bold text-1xl"
+        tag="div"
+        class="cursor-pointer lg:block xs:hidden sm:hidden hidden"
+        :to="{name: 'main.podcasts'}"
+      >Podcasts</router-link>
+      <router-link
+        exact
+        active-class="text-purple-700 font-bold text-1xl"
+        tag="div"
+        class="cursor-pointer lg:block xs:hidden sm:hidden hidden"
+        :to="{name: 'main.sermons'}"
+      >Sermons</router-link>
       <router-link
         exact
         active-class="text-purple-700 font-bold text-1xl"

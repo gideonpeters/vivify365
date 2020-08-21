@@ -1,5 +1,5 @@
 <template>
-  <div @click="goToPage('main.blog.detail', post.id)" class="relative">
+  <div @click="goToPage(getRouteName, post.id)" class="relative">
     <!-- <div class> -->
     <div
       class="lg:h-64 h-64 lg:w-full w-full z-0 shadow-md bg-center bg-cover bg-no-repeat bg-blue-400"
@@ -17,7 +17,11 @@
       <div class="flex px-10 pt-3">
         <div class="text-1xl multiline sm:text-2xl text-left font-bold">{{post.title}}</div>
       </div>
+      <div v-if="isDevotional" class="mt-2 lg:text-sm text-xs px-10 lg:mt-6">
+        <div class="text-left font-bold">THE NEW YOU</div>
+      </div>
       <div
+        v-show="isBlog"
         class="grid lg:grid-cols-3 grid-cols-1 lg:gap-6 gap-2 mt-2 lg:text-sm text-xs px-10 lg:mt-6"
       >
         <div class="flex text-center">
@@ -49,6 +53,19 @@ export default {
   props: {
     post: {
       type: Object
+    },
+    isBlog: {
+      type: Boolean,
+      default: false
+    },
+    isDevotional: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    getRouteName() {
+      return this.isDevotional ? "main.devotional.detail" : "main.blog.detail";
     }
   },
   methods: {

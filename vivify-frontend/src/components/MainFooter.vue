@@ -41,11 +41,24 @@
           <div>
             <div class="border-b border-purple-700 pb-2 mb-2 pr-0 lg:pr-10">MENU</div>
           </div>
-          <div>Home</div>
-          <div class="py-2">Blog</div>
-          <div>Devotional</div>
-          <div class="py-2">Speak Up</div>
-          <div>Contact</div>
+          <router-link exact class="cursor-pointer" tag="div" :to="{name: 'main.home'}">
+            <div>Home</div>
+          </router-link>
+          <router-link exact class="cursor-pointer py-2" tag="div" :to="{name: 'main.blog'}">
+            <div>Blog</div>
+          </router-link>
+          <router-link exact class="cursor-pointer" tag="div" :to="{name: 'main.devotional'}">
+            <div>Devotional</div>
+          </router-link>
+          <!-- <div class="py-2">Speak Up</div> -->
+          <router-link
+            exact
+            class="cursor-pointer py-2"
+            tag="div"
+            :to="{name: 'main.home', hash: '#contact'}"
+          >
+            <div>Contact</div>
+          </router-link>
         </div>
       </div>
       <div class="my-5 lg:my-0">
@@ -53,9 +66,15 @@
           <div>
             <div class="border-b border-purple-700 pb-2 mb-2 pr-0 lg:pr-10">FOLLOW US</div>
           </div>
-          <div>Facebook</div>
-          <div class="py-2">Twitter</div>
-          <div>Instagram</div>
+          <div>
+            <a href="https://www.facebook.com/vivify365/">Facebook</a>
+          </div>
+          <div class="py-2">
+            <a href="https://twitter.com/vivify365">Twitter</a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/vivify365">Instagram</a>
+          </div>
         </div>
       </div>
       <div class="flex lg:justify-start justify-center">
