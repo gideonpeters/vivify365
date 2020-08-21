@@ -33,5 +33,8 @@ Route::get('/devotionals/{devotional}', 'DevotionalController@show');
 Route::get('/devotionals/all/{devotion_id}', 'DevotionalController@indexByCategory');
 Route::get('/devotionals-featured', 'DevotionalController@getFeatured');
 
+Route::get('/devotions', 'DevotionController@index');
+Route::get('/devotions/{devotion}', 'DevotionController@show');
+
 Route::get('/gallery', 'GalleryPictureController@index');
 Route::get('/gallery/{gallery_picture}', 'GalleryPictureController@show');

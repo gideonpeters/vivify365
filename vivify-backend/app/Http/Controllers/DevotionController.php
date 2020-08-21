@@ -15,71 +15,22 @@ class DevotionController extends Controller
     public function index()
     {
         //
+        $devotions = Devotion::all();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'These are all the devotions',
+            'data' => $devotions
+        ],200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Devotion  $devotion
-     * @return \Illuminate\Http\Response
-     */
     public function show(Devotion $devotion)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Devotion  $devotion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Devotion $devotion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Devotion  $devotion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Devotion $devotion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Devotion  $devotion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Devotion $devotion)
-    {
-        //
+        return respoonse()->json([
+            'status' => true,
+            'message' => 'This is the devotions',
+            'data' => $devotion
+        ],200);
     }
 }
