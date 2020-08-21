@@ -101,7 +101,7 @@ export default {
           // this.currentPage = data.current_page;
           this.perPage = data.per_page;
           this.totalRows = data.total;
-          // console.log(data);
+          console.log(data);
           this.posts = data.data;
         });
       // } catch (error) {

@@ -3,14 +3,14 @@
     <!-- <div class> -->
     <div
       class="lg:h-64 h-64 lg:w-full w-full z-0 shadow-md bg-center bg-cover bg-no-repeat bg-blue-400"
-      :style="{backgroundImage: 'url('+'https://vivify365.org/blog/wp-content/uploads/2020/06/WhatsApp-Image-2020-06-23-at-21.37.53-738x423.jpeg'+')'}"
+      :style="{backgroundImage: 'url('+uri+post.image_link+')'}"
     ></div>
     <div class="h-56 lg:w-11/12 py-4 -mt-72 w-11/12 z-10 shadow-md bg-white">
       <div class="border-l-4 border-orange-500 py-2">
         <div class="flex px-10 items-center">
           <div
             class="font-bold text-gray-600 text-sm"
-          >{{ post.tags.length > 0? post.tags[0] : 'FAITH'}}</div>
+          >{{ post.tags.length > 0? post.tags[0].name : 'FAITH'}}</div>
           <div class="px-3 text-sm">5 MIN READ</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
           <div>
             <i class="mdi mdi-calendar pr-1"></i>
           </div>
-          <div>12-08-2020</div>
+          <div>{{moment(post.created_at).format('YYYY-MM-DD')}}</div>
         </div>
       </div>
     </div>
@@ -62,6 +62,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      uri: process.env.VUE_APP_BACKEND_IMAGE_URI
+    };
   },
   computed: {
     getRouteName() {

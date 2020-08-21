@@ -8,9 +8,11 @@ import router from "./routes/router";
 import '@/assets/styles/tailwind.css'
 import "@mdi/font/css/materialdesignicons.css";
 import VuePlyr from 'vue-plyr';
+import moment from 'moment'
 // import 'vue-plyr/dist/vue-plyr.css';
 
 Vue.config.productionTip = false
+Vue.prototype.moment = moment;
 axios.defaults.baseURL = process.env.VUE_APP_API_URI;
 
 
