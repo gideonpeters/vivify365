@@ -25,7 +25,7 @@
         <div class="flex lg:pt-5 pt-2 items-center">
           <div class="lg:w-16 w-10 h-10 lg:h-16 rounded-full border border-gray-500"></div>
           <div class="text-left pl-5">
-            <div class="font-bold text-md">{{item.author}}</div>
+            <div class="font-bold text-md">{{ isSermon? item.author : 'Vivify Podcast'}}</div>
             <div class="text-sm">25 mins</div>
           </div>
         </div>

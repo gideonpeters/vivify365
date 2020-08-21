@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="flex justify-start text-justify container mx-auto px-10 py-10 bg-white">
-      <div v-html="post.body" class="leading-loose text-2xl"></div>
+      <div v-html="post.body" class="leading-loose text-2xl vcVerseLink"></div>
     </div>
     <div class="flex container mx-auto justify-between w-screen">
       <div class="w-1/2 text-gray-600 text-1xl cursor-pointer text-left">

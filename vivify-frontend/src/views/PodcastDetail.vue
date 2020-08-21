@@ -12,7 +12,7 @@
           <div class="text-white lg:-ml-8 -ml-5 mt-5">
             <ShareNetwork
               network="facebook"
-              :url="window.location.href"
+              :url="currentRoute"
               :title="podcast.title ? podcast.title : 'Vivify blog'"
               :description="podcast.body"
               :quote="podcast.body"
@@ -38,7 +38,7 @@
         </div>
         <div class="xl:w-3/5 lg:w-4/5 w-full">
           <vue-plyr>
-            <audio controls>
+            <audio controls ref="player">
               <source :src="audioLink" type="audio/mp3" />
               <!-- <source
                 src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
@@ -152,6 +152,10 @@ export default {
     },
     audioLink() {
       return this.uri + this.podcast.audio_link;
+    },
+    currentRoute() {
+      return "vivify365.org";
+      // return window.location.href;
     }
   },
   methods: {
@@ -199,6 +203,7 @@ export default {
     }
   },
   async mounted() {
+    // console.log(window.location.href);
     await this.getPodcast();
   }
 };

@@ -62,6 +62,16 @@ export default {
       this.showMiniNav = false;
       this.$router.push({ name: name });
     }
+  },
+  mounted() {
+    let recaptchaScript = document.createElement("script");
+    recaptchaScript.setAttribute(
+      "src",
+      "https://av1611.com/verseclick/verseclick.js"
+    );
+    recaptchaScript.setAttribute("type", "text/javascript");
+    console.log("hi");
+    document.head.appendChild(recaptchaScript);
   }
 };
 </script>
