@@ -94,20 +94,20 @@
       <div class="flex flex-col items-center">
         <div class="flex lg:flex-row flex-col justify-between">
           <div class="mr-0 lg:mr-3">
-            <mini-blog-card double />
+            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" double />
           </div>
 
           <div class="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
-            <mini-blog-card />
-            <mini-blog-card />
-            <mini-blog-card />
-            <mini-blog-card />
+            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
           </div>
         </div>
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
-          <mini-blog-card />
-          <mini-blog-card />
-          <mini-blog-card />
+          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
         </div>
       </div>
       <div class="mt-5 mb-32">
