@@ -150,9 +150,10 @@
           class="flex-1 lg:text-left sm:text-left text-center text-purple-700 lg:mt-0 mt-5 lg:pl-10 sm:pl-5 pl-0"
         >
           <div class="text-2xl">Hello,</div>
-          <div
-            class="w-64"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quas minus ex tempore eum est illo, eius expedita corporis pariatur, minima repudiandae soluta adipisci dolore, molestiae autem consectetur tenetur corrupti!</div>
+          <div class="w-64">
+            You're in the right place. This is a platform to be enlightened and edified daily with the Word of God and have all your burning questions answered. We envision all people awakened to the finished work of Christ.
+            We're here to keep you pumped for the Gospel.
+          </div>
         </div>
       </div>
 
@@ -236,7 +237,7 @@ export default {
   data() {
     return {
       blogs: [],
-      galleryItems: [],
+      fetchedGalleryItems: [],
       items: [
         {
           title: "The Vivify Family",
@@ -250,7 +251,18 @@ export default {
       galleryIndex: null
     };
   },
-
+  computed: {
+    galleryItems() {
+      return this.fetchedGalleryItems.map(item => {
+        return {
+          title: item.title,
+          description: item.description,
+          src: item.image_link,
+          ...item
+        };
+      });
+    }
+  },
   methods: {
     getBlog(ix) {
       return this.blogs[ix] ? this.blogs[ix] : {};
@@ -277,8 +289,8 @@ export default {
         // this.currentPage = data.current_page;
         // this.perPage = data.per_page;
         // this.totalRows = data.total;
-        // console.log(data);
-        this.galleryItems = data.data;
+        console.log(data);
+        this.fetchedGalleryItems = data.data;
       });
       // } catch (error) {
       //   throw error;
@@ -287,6 +299,7 @@ export default {
   },
   async mounted() {
     await this.getBlogPosts();
+    await this.getGallery();
   }
 };
 </script>

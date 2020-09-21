@@ -43,3 +43,5 @@ Route::get('/devotions/{devotion}', 'DevotionController@show');
 
 Route::get('/gallery', 'GalleryPictureController@index');
 Route::get('/gallery/{gallery_picture}', 'GalleryPictureController@show');
+
+Route::get('/quotes', 'QuoteController@index');
