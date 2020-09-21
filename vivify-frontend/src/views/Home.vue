@@ -118,53 +118,20 @@
           <CoolLightBox :items="galleryItems" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
 
           <div class="mr-0 lg:mr-3">
-            <gallery-card
-              @click="galleryIndex = 0"
-              :item="getBlog(0)"
-              :imageLink="getBlog(0).image_link"
-              double
-            />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" double />
           </div>
 
           <div class="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
-            <gallery-card
-              @click="galleryIndex = 0"
-              :item="getBlog(0)"
-              :imageLink="getBlog(0).image_link"
-            />
-            <gallery-card
-              @click="galleryIndex = 0"
-              :item="getBlog(0)"
-              :imageLink="getBlog(0).image_link"
-            />
-            <gallery-card
-              @click="galleryIndex = 0"
-              :item="getBlog(0)"
-              :imageLink="getBlog(0).image_link"
-            />
-            <gallery-card
-              @click="galleryIndex = 0"
-              :item="getBlog(0)"
-              :imageLink="getBlog(0).image_link"
-            />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
           </div>
         </div>
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
-          <gallery-card
-            @click="galleryIndex = 0"
-            :item="getBlog(0)"
-            :imageLink="getBlog(0).image_link"
-          />
-          <gallery-card
-            @click="galleryIndex = 0"
-            :item="getBlog(0)"
-            :imageLink="getBlog(0).image_link"
-          />
-          <gallery-card
-            @click="galleryIndex = 0"
-            :item="getBlog(0)"
-            :imageLink="getBlog(0).image_link"
-          />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
         </div>
       </div>
       <div class="mt-5 mb-32">
@@ -299,6 +266,19 @@ export default {
         // this.totalRows = data.total;
         // console.log(data);
         this.blogs = data.data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getGallery() {
+      // try {
+      await this.$store.dispatch("getGallery").then(({ data }) => {
+        // this.currentPage = data.current_page;
+        // this.perPage = data.per_page;
+        // this.totalRows = data.total;
+        // console.log(data);
+        this.galleryItems = data.data;
       });
       // } catch (error) {
       //   throw error;

@@ -23,6 +23,15 @@ export default new Vuex.Store({
             //     throw error;
             // }
         },
+        async getGallery() {
+            // try {
+            let res = await axios.get(`gallery`);
+            // console.table(res.data);
+            return res.data
+            // } catch (error) {
+            //     throw error;
+            // }
+        },
         async commentOnPost(context, body) {
             await axios.post('comment', body);
         },

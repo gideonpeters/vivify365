@@ -9,7 +9,7 @@
     data-aos-anchor-placement="top-center"
   >
     <div
-      :style="{backgroundImage: 'url('+ uri+ imageLink +')'}"
+      :style="{backgroundImage: 'url('+item.image_link +')'}"
       class="h-56 bg-cover z-0 bg-center bg-no-repeat d-flex bg-gray-700 w-64 my-2"
       :class="double ? ' d-height ' : ''"
     ></div>
