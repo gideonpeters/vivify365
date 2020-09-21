@@ -15,7 +15,7 @@ class QuoteController extends Controller
     public function index()
     {
         //
-        $quotes = Quote::all();
+        $quotes = Quote::take(3)->get();
 
         return response()->json([
             'status' => true,

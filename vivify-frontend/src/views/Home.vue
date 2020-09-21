@@ -277,7 +277,7 @@ export default {
         // this.perPage = data.per_page;
         // this.totalRows = data.total;
         // console.log(data);
-        this.blogs = data.data;
+        this.blogs = data;
       });
       // } catch (error) {
       //   throw error;

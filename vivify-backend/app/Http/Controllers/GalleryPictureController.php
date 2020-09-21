@@ -15,7 +15,7 @@ class GalleryPictureController extends Controller
     public function index()
     {
         //
-        $gallery_pictures = GalleryPicture::paginate(8);
+        $gallery_pictures = GalleryPicture::take(8)->get();
 
         return response()->json([
             'status' => true,
