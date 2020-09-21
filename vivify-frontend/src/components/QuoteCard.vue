@@ -1,10 +1,18 @@
 <template>
-  <div>
+  <div
+    data-aos="flip-up"
+    data-aos-offset="0"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in"
+    data-aos-once="false"
+    data-aos-mirror="true"
+    data-aos-anchor-placement="top-center"
+  >
     <div
       class="flex justify-around mx-5 p-2 hd-75 flex-col rounded border border-orange-500"
       :class="{'border-purple-700 hd-100': primary}"
     >
-      <div class>
+      <div>
         <div class="font-bold">TODAY'S QUOTE</div>
       </div>
       <div class="py-1">

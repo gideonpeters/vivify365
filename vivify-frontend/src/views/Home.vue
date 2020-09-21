@@ -3,21 +3,33 @@
     <div class="bg-image flex bg-no-repeat bg-cover bg-center">
       <div class="grid lg:grid-cols-2 grid-cols-1 lg:py-0 py-12 gap-10 container px-10 mx-auto">
         <div class="flex text-white flex-col items-start justify-center align-middle text-left">
-          <div class="text-6xl">
+          <div
+            class="text-6xl"
+            data-aos="fade-up"
+            data-aos-offset="200"
+            data-aos-delay="50"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-out"
+            data-aos-mirror="false"
+            data-aos-once="false"
+            data-aos-anchor-placement="top-center"
+          >
             Welcome
-            <br />Home!
+            <br />You Are Home!
           </div>
           <div class="text-2xl my-4">
-            <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos nesciunt, enim esse id amet alias sunt, non iusto nemo consectetur aut vel repellendus.</div>
+            <div>We share truths with powerful simplicity, Our joy is to help you grow to know the Lord in the simplest and deepest ways possible.</div>
           </div>
           <div>
-            <custom-button primary text="GET STARTED" />
+            <custom-button rounded primary text="GET STARTED" />
           </div>
         </div>
         <div
           class="flex text-white flex-col lg:items-center items-end justify-center align-middle text-left"
         >
+          <CoolLightBox :items="items" :index="index" @close="index = null"></CoolLightBox>
           <div
+            @click="index =0 "
             class="bg-orange-500 p-5 h-16 w-16 rounded-full flex justify-center items-center cursor-pointer"
           >
             <i class="mdi mdi-play mdi-36px"></i>
@@ -33,7 +45,17 @@
       >
         <div class="grid lg:grid-cols-2 grid-cols-1">
           <div>
-            <div class="text-3xl lg:mb-0 mb-5">WE'RE PASSIONATE ABOUT YOUR GROWTH</div>
+            <div
+              class="text-3xl lg:mb-0 mb-5"
+              data-aos="fade-up"
+              data-aos-offset="10"
+              data-aos-delay="50"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+              data-aos-mirror="false"
+              data-aos-once="false"
+              data-aos-anchor-placement="top-center"
+            >WE'RE PASSIONATE ABOUT YOUR GROWTH</div>
           </div>
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores necessitatibus repellat temporibus? Atque, eligendi accusantium quisquam optio perferendis tempore possimus minima laudantium. Natus inventore doloribus libero dolorum quisquam officiis placeat!</div>
         </div>
@@ -42,22 +64,22 @@
       <div
         class="grid xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 flex sm:items-start lg:items-center items-center mt-12"
       >
-        <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-        <mini-blog-card :item="getBlog(1)" :imageLink="getBlog(1).image_link" double />
-        <mini-blog-card
+        <gallery-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+        <gallery-card :item="getBlog(1)" :imageLink="getBlog(1).image_link" double />
+        <gallery-card
           :item="getBlog(2)"
           :imageLink="getBlog(2).image_link"
           class="lg:hidden block"
         />
         <div class="flex flex-col">
-          <mini-blog-card :item="getBlog(3)" :imageLink="getBlog(3).image_link" />
-          <mini-blog-card
+          <gallery-card :item="getBlog(3)" :imageLink="getBlog(3).image_link" />
+          <gallery-card
             :item="getBlog(4)"
             :imageLink="getBlog(4).image_link"
             class="lg:block hidden"
           />
         </div>
-        <mini-blog-card
+        <gallery-card
           :item="getBlog(5)"
           :imageLink="getBlog(5).image_link"
           class="lg:block sm:hidden hidden"
@@ -88,30 +110,65 @@
         <quote-card class="lg:block hidden" />
       </div>
       <div class="mt-5 mb-32">
-        <custom-button text="VIEW ALL" sm rounded />
+        <!-- <custom-button text="VIEW ALL" sm rounded /> -->
       </div>
       <subheader title="GALLERY" subTitle="Pictorial Depiction of our family" class />
       <div class="flex flex-col items-center">
         <div class="flex lg:flex-row flex-col justify-between">
+          <CoolLightBox :items="galleryItems" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
+
           <div class="mr-0 lg:mr-3">
-            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" double />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="getBlog(0)"
+              :imageLink="getBlog(0).image_link"
+              double
+            />
           </div>
 
           <div class="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
-            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-            <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="getBlog(0)"
+              :imageLink="getBlog(0).image_link"
+            />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="getBlog(0)"
+              :imageLink="getBlog(0).image_link"
+            />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="getBlog(0)"
+              :imageLink="getBlog(0).image_link"
+            />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="getBlog(0)"
+              :imageLink="getBlog(0).image_link"
+            />
           </div>
         </div>
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
-          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
-          <mini-blog-card :item="getBlog(0)" :imageLink="getBlog(0).image_link" />
+          <gallery-card
+            @click="galleryIndex = 0"
+            :item="getBlog(0)"
+            :imageLink="getBlog(0).image_link"
+          />
+          <gallery-card
+            @click="galleryIndex = 0"
+            :item="getBlog(0)"
+            :imageLink="getBlog(0).image_link"
+          />
+          <gallery-card
+            @click="galleryIndex = 0"
+            :item="getBlog(0)"
+            :imageLink="getBlog(0).image_link"
+          />
         </div>
       </div>
       <div class="mt-5 mb-32">
-        <custom-button text="VIEW ALL" sm rounded />
+        <!-- <custom-button text="VIEW ALL" sm rounded /> -->
       </div>
       <subheader title="MEET OUR LEAD PASTOR" />
       <div
@@ -196,20 +253,34 @@
 <script>
 import Subheader from "@/components/Subheader.vue";
 import CustomButton from "@/components/CustomButton.vue";
-import MiniBlogCard from "@/components/MiniBlogCard.vue";
+// import MiniBlogCard from "@/components/MiniBlogCard.vue";
+import GalleryCard from "@/components/GalleryCard.vue";
 import QuoteCard from "@/components/QuoteCard.vue";
 import DevotionCard from "@/components/DevotionCard.vue";
 export default {
   components: {
     Subheader,
     CustomButton,
-    MiniBlogCard,
+    // MiniBlogCard,
     QuoteCard,
-    DevotionCard
+    DevotionCard,
+    GalleryCard
   },
   data() {
     return {
-      blogs: []
+      blogs: [],
+      galleryItems: [],
+      items: [
+        {
+          title: "The Vivify Family",
+          description:
+            "We are a family of love, spreading the love of God wherever we are and aren't",
+          thumb: "thumb.jpg",
+          src: "https://www.youtube.com/watch?v=Z7SXwvhxxoY"
+        }
+      ],
+      index: null,
+      galleryIndex: null
     };
   },
 
