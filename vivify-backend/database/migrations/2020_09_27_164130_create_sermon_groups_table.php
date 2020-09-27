@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSermonsTable extends Migration
+class CreateSermonGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateSermonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sermons', function (Blueprint $table) {
+        Schema::create('sermon_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('author');
             $table->string('title');
-            $table->string('audio_url')->nullable();
-            $table->string('image_url')->nullable();
-            $table->text('body');
-            $table->boolean('is_featured')->default(false);
-            $table->foreignId('sermon_group_id')->nullable();
-
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ class CreateSermonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sermons');
+        Schema::dropIfExists('sermon_groups');
     }
 }

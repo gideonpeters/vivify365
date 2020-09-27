@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sermon;
+use App\SermonGroup;
 use Illuminate\Http\Request;
 
 class SermonController extends Controller
@@ -23,11 +24,11 @@ class SermonController extends Controller
         ], 201);
     }
 
-   
+
     public function show(Sermon $sermon)
     {
         //
-        if(empty($sermon)){
+        if (empty($sermon)) {
             return response()->json([
                 'status' => true,
                 'message' => 'sermon post not found',
@@ -46,8 +47,8 @@ class SermonController extends Controller
     {
         //
         $featured = Sermon::where('is_featured', true)->latest()->first();
-        
-        if(empty($featured)){
+
+        if (empty($featured)) {
             return response()->json([
                 'status' => true,
                 'message' => 'featured sermon not found',
@@ -62,5 +63,23 @@ class SermonController extends Controller
         ], 201);
     }
 
-    
+    public function indexByCategory(Request $request, $sermon_group_id)
+    {
+        $sermon_group = SermonGroup::find($sermon_group_id);
+
+        if (empty($sermon_group)) {
+            return response()->json([
+                'status' => true,
+                'message' => 'sermon group not found',
+                'data' => null
+            ], 201);
+        }
+        $sermons = Sermon::where('sermon_group_id', '=', $sermon_group_id)->paginate(6);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'these are the sermons',
+            'data' => $sermons
+        ], 201);
+    }
 }

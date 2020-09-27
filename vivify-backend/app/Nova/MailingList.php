@@ -3,23 +3,17 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Sermon extends Resource
+class MailingList extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Sermon::class;
+    public static $model = \App\MailingList::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -47,14 +41,6 @@ class Sermon extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Image::make('Image', 'image_url')->prunable(),
-            Text::make('Title'),
-            Text::make('Speaker', 'author'),
-            Textarea::make('Body'),
-            Boolean::make('Featured Post?', 'is_featured'),
-            File::make('File', 'audio_url'),
-            BelongsTo::make('sermon_group'),
-
         ];
     }
 

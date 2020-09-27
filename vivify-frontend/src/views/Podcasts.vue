@@ -7,16 +7,24 @@
       >
         <div class="xl:w-1/2 lg:w-full w-full text-left lg:mr-10 mr-0">
           <div
-            class="font-bold text-purple-700 lg:text-6xl text-4xl break-words"
-          >WE KEEP YOU INSPIRED ON THE GO</div>
+            class="font-bold text-purple-700 lg:text-5xl text-4xl break-words"
+          >WE KEEP YOU INSPIRED ON THE GO!</div>
           <div
             class="leading-9 text-1xl"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aut voluptatibus corporis laudantium minima omnis deserunt velit nulla unde, laboriosam assumenda odit quos nemo culpa similique perspiciatis sit, voluptas labore?</div>
+          >This is the Vivify Podcast, where we answer questions that will be supplementary to your Christian growth and faith as we continuously awaken your heart to the finished work of Christ.</div>
           <div class="mt-5">
-            <custom-button sm text="EXPLORE" />
+            <!-- <custom-button sm text="EXPLORE" /> -->
           </div>
         </div>
-        <div class="podcast-image relative xl:w-1/2 lg:w-5/6 w-full lg:mt-10 xl:mt-0 mt-10 mb-10">
+        <div
+          data-aos="fade-up"
+          data-aos-offset="0"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-center"
+          class="podcast-image relative xl:w-2/5 lg:w-5/6 w-full lg:mt-10 xl:mt-0 mt-10 mb-10"
+        >
           <div
             class="h-full z-0 relative shadow-md bg-center bg-cover bg-no-repeat bg-blue-400"
             :style="{backgroundImage: 'url('+'https://cdn-images-1.listennotes.com/podcasts/the-vivify-podcast/are-you-ready-for-season-2-4A6TJQlSavk-wp8nZEIrcDB.1400x1400.jpg'+')'}"
@@ -31,11 +39,11 @@
             </div>
             <div
               class="text-left multiline"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius dolorem laboriosam, placeat odio quas expedita porro voluptatibus laborum quasi harum minima illo, obcaecati aperiam exercitationem commodi mollitia recusandae ab blanditiis!</div>
+            >Available on Anchor, Apple Podcasts, Google Podcasts, Spotify and other major streaming platforms!</div>
             <div class="flex lg:pt-5 pt-2 items-center">
               <div class="lg:w-16 w-10 h-10 lg:h-16 rounded-full border border-gray-500"></div>
               <div class="text-left pl-5">
-                <div class="font-bold text-md">Bethel Ofuyatan</div>
+                <div class="font-bold text-md">The Vivify Podcast</div>
                 <div class="text-sm">25 mins</div>
               </div>
             </div>
@@ -99,12 +107,12 @@
 
 <script>
 import PageBanner from "@/components/PageBanner.vue";
-import CustomButton from "@/components/CustomButton.vue";
+// import CustomButton from "@/components/CustomButton.vue";
 import PodcastCard from "@/components/PodcastCard.vue";
 export default {
   components: {
     PageBanner,
-    CustomButton,
+    // CustomButton,
     PodcastCard
   },
   data() {
@@ -145,7 +153,8 @@ export default {
       // } catch (error) {
       //   throw error;
       // }
-    }
+    },
+    async searchPodcasts() {}
   },
   watch: {
     currentPage(v) {
@@ -182,13 +191,13 @@ export default {
 }
 @media (min-width: 1024px) {
   .podcast-image {
-    height: 600px;
+    height: 400px;
   }
 }
 
 @media (min-width: 1280px) {
   .podcast-image {
-    height: 700px;
+    height: 400px;
   }
 }
 </style>

@@ -1,9 +1,16 @@
 <template>
-  <div>
+  <div
+    data-aos="fade-up"
+    data-aos-offset="0"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in"
+    data-aos-once="true"
+    data-aos-anchor-placement="top-center"
+  >
     <div class="podcast-image relative" @click="goToPage">
       <div
         class="h-64 z-0 relative bg-center bg-cover bg-no-repeat bg-blue-400"
-        :style="{backgroundImage: 'url('+uri+item.image_link+')'}"
+        :style="{backgroundImage: 'url('+item.image_link+')'}"
       >
         <div
           class="cursor-pointer w-20 h-20 flex justify-center items-center absolute bottom-0 bg-white"

@@ -29,7 +29,7 @@
         >
           <CoolLightBox :items="items" :index="index" @close="index = null"></CoolLightBox>
           <div
-            @click="index =0 "
+            @click="index = 0"
             class="bg-orange-500 p-5 h-16 w-16 rounded-full flex justify-center items-center cursor-pointer"
           >
             <i class="mdi mdi-play mdi-36px"></i>
@@ -88,14 +88,18 @@
       <div class="mt-5 mb-32">
         <custom-button text="VIEW ALL" :onClick="()=>goToPage('main.blog')" sm rounded />
       </div>
-      <subheader title="VIVIFY DEVOTIONALS" subTitle="Anchored By Abundant Grace" />
+      <subheader title="VIVIFY DEVOTIONALS" subTitle />
       <div
         class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 flex lg:items-center sm:items-center items-center justify-center mt-12"
       >
-        <devotion-card class="lg:block hidden" />
-        <devotion-card primary />
-        <devotion-card primary class="lg:hidden xs:hidden block" />
-        <devotion-card class="lg:block hidden" />
+        <devotion-card :devotion="devotions[0] ? devotions[0] : {}" class="lg:block hidden" />
+        <devotion-card :devotion="devotions[1] ? devotions[1] : {}" primary />
+        <devotion-card
+          :devotion="devotions[1] ? devotions[1] : {}"
+          primary
+          class="lg:hidden xs:hidden block"
+        />
+        <devotion-card :devotion="devotions[2] ? devotions[2] : {}" class="lg:block hidden" />
       </div>
       <div class="mt-5 mb-32">
         <custom-button text="VIEW ALL" sm rounded />
@@ -104,10 +108,10 @@
       <div
         class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 flex lg:items-center sm:items-center items-center justify-center mt-12"
       >
-        <quote-card class="lg:block hidden" />
-        <quote-card primary />
-        <quote-card primary class="lg:hidden xs:hidden block" />
-        <quote-card class="lg:block hidden" />
+        <quote-card :quote="quotes[0] ? quotes[0] : {}" class="lg:block hidden" />
+        <quote-card :quote="quotes[1] ? quotes[1] : {}" primary />
+        <quote-card :quote="quotes[1] ? quotes[1] : {}" primary class="lg:hidden xs:hidden block" />
+        <quote-card :quote="quotes[2] ? quotes[2] : {}" class="lg:block hidden" />
       </div>
       <div class="mt-5 mb-32">
         <!-- <custom-button text="VIEW ALL" sm rounded /> -->
@@ -118,20 +122,24 @@
           <CoolLightBox :items="galleryItems" :index="galleryIndex" @close="galleryIndex = null"></CoolLightBox>
 
           <div class="mr-0 lg:mr-3">
-            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" double />
+            <gallery-card
+              @click="galleryIndex = 0"
+              :item="galleryItems[0] ? galleryItems[0] : {}"
+              double
+            />
           </div>
 
           <div class="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
-            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
-            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
-            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
-            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
+            <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
           </div>
         </div>
         <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
-          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
-          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
-          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0]" />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
+          <gallery-card @click="galleryIndex = 0" :item="galleryItems[0] ? galleryItems[0] : {}" />
         </div>
       </div>
       <div class="mt-5 mb-32">
@@ -168,13 +176,19 @@
             <div class="text-purple-700">Our Social Media</div>
             <div class="flex">
               <div>
-                <i class="mdi mdi-whatsapp text-green-700 mdi-18px"></i>
+                <a href="https://api.whatsapp.com/send?phone=+2347089324817">
+                  <i class="mdi mdi-whatsapp text-green-700 mdi-18px"></i>
+                </a>
               </div>
               <div class="px-5">
-                <i class="mdi mdi-twitter text-blue-500 mdi-18px"></i>
+                <a href="https://twitter.com/vivify365">
+                  <i class="mdi mdi-twitter text-blue-500 mdi-18px"></i>
+                </a>
               </div>
               <div>
-                <i class="mdi mdi-instagram mdi-18px"></i>
+                <a href="https://instagram.com/vivify365">
+                  <i class="mdi mdi-instagram mdi-18px"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -225,6 +239,8 @@ import CustomButton from "@/components/CustomButton.vue";
 import GalleryCard from "@/components/GalleryCard.vue";
 import QuoteCard from "@/components/QuoteCard.vue";
 import DevotionCard from "@/components/DevotionCard.vue";
+import axios from "axios";
+
 export default {
   components: {
     Subheader,
@@ -237,6 +253,8 @@ export default {
   data() {
     return {
       blogs: [],
+      quotes: [],
+      devotions: [],
       fetchedGalleryItems: [],
       items: [
         {
@@ -253,11 +271,11 @@ export default {
   },
   computed: {
     galleryItems() {
-      return this.fetchedGalleryItems.map(item => {
+      return this.fetchedGalleryItems?.map(item => {
         return {
-          title: item.title,
-          description: item.description,
-          src: item.image_link,
+          title: item?.title,
+          description: item?.description,
+          src: item?.image_link,
           ...item
         };
       });
@@ -289,8 +307,32 @@ export default {
         // this.currentPage = data.current_page;
         // this.perPage = data.per_page;
         // this.totalRows = data.total;
-        console.log(data);
-        this.fetchedGalleryItems = data.data;
+        // console.log(data);
+        this.fetchedGalleryItems = data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getDevotions() {
+      // try {
+      await this.$store.dispatch("getDevotions").then(({ data }) => {
+        // console.log(data);
+
+        this.devotions = data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async getQuotes() {
+      // try {
+      await axios.get("quotes").then(({ data }) => {
+        // this.currentPage = data.current_page;
+        // this.perPage = data.per_page;
+        // this.totalRows = data.total;
+        // console.log(data);
+        this.quotes = data.data;
       });
       // } catch (error) {
       //   throw error;
@@ -300,6 +342,8 @@ export default {
   async mounted() {
     await this.getBlogPosts();
     await this.getGallery();
+    await this.getDevotions();
+    await this.getQuotes();
   }
 };
 </script>

@@ -18,11 +18,11 @@ class DevotionalController extends Controller
         //
         $devotionals = Devotional::with('tags')->paginate(6);
 
-        if(empty($devotionals)){
+        if (empty($devotionals)) {
             return response()->json([
                 'status' => true,
                 'message' => 'devotionals not found',
-                'data' => $devotional
+                'data' => $devotionals
             ], 201);
         }
 
@@ -37,7 +37,7 @@ class DevotionalController extends Controller
     {
         $devotion = Devotion::find($devotion_id);
 
-        if(empty($devotion)){
+        if (empty($devotion)) {
             return response()->json([
                 'status' => true,
                 'message' => 'devotion not found',
@@ -56,7 +56,7 @@ class DevotionalController extends Controller
     public function show(Devotional $devotional)
     {
         //
-        if(empty($devotional)){
+        if (empty($devotional)) {
             return response()->json([
                 'status' => true,
                 'message' => 'devotional not found',
@@ -70,6 +70,4 @@ class DevotionalController extends Controller
             'data' => $devotional
         ], 201);
     }
-
-    
 }

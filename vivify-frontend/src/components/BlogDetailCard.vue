@@ -1,9 +1,9 @@
 <template>
-  <div @click="goToPage('main.blog.detail', post.id)">
+  <div @click="goToPage('main.blog.detail', post.id)" class="bg-white cursor-pointer">
     <div class="flex h-64 justify-center w-full px-5">
       <div
         class="post-image bg-no-repeat bg-cover bg-center bg-blue-800"
-        :style="{backgroundImage: 'url('+uri  +post.image_link+')'}"
+        :style="{backgroundImage: 'url('+post.image_link+')'}"
       ></div>
       <div class="text-left post-body ml-5 multiline leading-9 break-words h-64">
         <div class="font-bold uppercase text-2xl break-words">{{ post.title }}</div>

@@ -56,26 +56,16 @@
           </div>
         </div>
         <div class="lg:mt-0 mt-5 flex w-full justify-center lg:justify-end">
-          <t-dropdown text="Sermon Categories">
+          <t-dropdown class="w-full" text="Sermon Categories">
             <ul>
-              <li>
-                <a
-                  href="#"
+              <li
+                v-for="sermonGroup in sermonGroups"
+                :key="sermonGroup.id"
+                @click="getSermonsByCategory(sermonGroup.id)"
+              >
+                <div
                   class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-                >Recent</a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-                >Popular</a>
-              </li>
-              <li class="border-b"></li>
-              <li>
-                <a
-                  href="#"
-                  class="block no-underline px-4 py-2 hover:bg-blue-500 hover:text-white"
-                >Faith</a>
+                >{{sermonGroup.title}}</div>
               </li>
             </ul>
           </t-dropdown>
@@ -115,7 +105,8 @@ export default {
       limit: 5,
       disabled: false,
       currentPage: 1,
-      sermons: []
+      sermons: [],
+      sermonGroups: []
     };
   },
   methods: {
@@ -132,21 +123,35 @@ export default {
       //   throw error;
       // }
     },
-    async getSermonsByCategory(categoryId) {
+
+    async getSermonsByCategory(sermonGroupId) {
       // try {
       await this.$store
-        .dispatch("getSermonsByCategory", categoryId)
+        .dispatch("getSermonsByCategory", sermonGroupId)
         .then(({ data }) => {
           // this.currentPage = data.current_page;
           this.perPage = data.per_page;
           this.totalRows = data.total;
           console.log(data);
-          this.devotionals = data.data;
+          this.sermons = data.data;
         });
       // } catch (error) {
       //   throw error;
       // }
-    }
+    },
+    async getSermonGroups() {
+      // try {
+      await this.$store.dispatch("getSermonGroups").then(({ data }) => {
+        // this.currentPage = data.current_page;
+
+        console.log(data);
+        this.sermonGroups = data;
+      });
+      // } catch (error) {
+      //   throw error;
+      // }
+    },
+    async searchSermons() {}
   },
   watch: {
     currentPage(v) {

@@ -1,20 +1,31 @@
 <template>
-  <div class="text-white">
+  <div
+    class="text-white"
+    data-aos="slide-up"
+    data-aos-offset="0"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in"
+    data-aos-once="true"
+    data-aos-anchor-placement="top-center"
+  >
     <div
-      class="bg-purple-700 flex items-center justify-around mx-5 p-5 hd-75 flex-col rounded"
-      :class="{' hd-100': primary}"
+      class="bg-purple-700 flex items-start justify-start mx-5 hd-75 flex-col rounded"
+      :class="{'hd-100': primary}"
     >
-      <div class="bg-white w-full h-32 rounded mb-2"></div>
-      <div class>
-        <div class="font-bold">TODAY'S QUOTE</div>
-      </div>
-      <div class="py-1">
-        <div
-          class="text-sm"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Arecusandae esse pariatur rem illo repellendus, voluptas est unde, optio voluptatum a eveniet reiciendis incidunt sunt quisquam at corrupti?</div>
-      </div>
-      <div>
-        <div class="text-sm cursor-pointer">READ MORE</div>
+      <div
+        class="bg-black w-full h-64 mb-2 bg-cover z-0 bg-center bg-no-repeat"
+        :style="{backgroundImage: 'url('+devotion.image_link +')'}"
+      ></div>
+      <div class="px-5 pb-5">
+        <div class>
+          <div class="font-bold">{{devotion.title}}</div>
+        </div>
+        <div class="py-1">
+          <div class="text-sm">{{devotion.description}}</div>
+        </div>
+        <div>
+          <div class="text-sm cursor-pointer">READ</div>
+        </div>
       </div>
     </div>
   </div>
@@ -26,6 +37,9 @@ export default {
     primary: {
       type: Boolean,
       default: false
+    },
+    devotion: {
+      type: Object
     }
   }
 };

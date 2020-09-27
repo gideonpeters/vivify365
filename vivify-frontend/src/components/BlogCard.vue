@@ -1,9 +1,9 @@
 <template>
-  <div @click="goToPage(getRouteName, post.id)" class="relative">
+  <div @click="goToPage(getRouteName, post.id)" class="relative cursor-pointer">
     <!-- <div class> -->
     <div
       class="lg:h-64 h-64 lg:w-full w-full z-0 shadow-md bg-center bg-cover bg-no-repeat bg-blue-400"
-      :style="{backgroundImage: 'url('+uri+post.image_link+')'}"
+      :style="{backgroundImage: 'url('+post.image_link+')'}"
     ></div>
     <div class="h-56 lg:w-11/12 py-4 -mt-72 w-11/12 z-10 shadow-md bg-white">
       <div class="border-l-4 border-orange-500 py-2">

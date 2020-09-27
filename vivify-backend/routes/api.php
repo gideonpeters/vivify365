@@ -27,6 +27,7 @@ Route::post('/comment', 'CommentController@store');
 Route::get('/sermons', 'SermonController@index');
 Route::get('/sermons/{sermon}', 'SermonController@show');
 Route::get('/sermons-featured', 'SermonController@getFeatured');
+Route::get('/sermons/all/{sermon_id}', 'SermonController@indexByCategory');
 
 Route::get('/podcasts', 'PodcastController@index');
 Route::get('/podcasts/{podcast}', 'PodcastController@show');
@@ -40,6 +41,9 @@ Route::get('/devotionals-featured', 'DevotionalController@getFeatured');
 
 Route::get('/devotions', 'DevotionController@index');
 Route::get('/devotions/{devotion}', 'DevotionController@show');
+
+Route::get('/sermon_groups', 'SermonGroupController@index');
+Route::get('/sermon_groups/{sermon_group}', 'SermonGroupController@show');
 
 Route::get('/gallery', 'GalleryPictureController@index');
 Route::get('/gallery/{gallery_picture}', 'GalleryPictureController@show');

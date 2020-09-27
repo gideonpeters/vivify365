@@ -16,12 +16,10 @@
         <div class="font-bold">TODAY'S QUOTE</div>
       </div>
       <div class="py-1">
-        <div
-          class="text-sm"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Arecusandae esse pariatur rem illo repellendus, voluptas est unde, optio voluptatum a eveniet reiciendis incidunt sunt quisquam at corrupti?</div>
+        <div class="text-sm">{{quote.body}}</div>
       </div>
       <div class="pt-1">
-        <div>By: Pastor Kenneth Olusanya</div>
+        <div>By: {{quote.author}}</div>
       </div>
       <div class="pt-1 flex items-center justify-center">
         <div class="text-purple-700 pr-2">Share:</div>
@@ -47,6 +45,10 @@ export default {
     primary: {
       type: Boolean,
       default: false
+    },
+    quote: {
+      type: Object
+      // default: {}
     }
   }
 };

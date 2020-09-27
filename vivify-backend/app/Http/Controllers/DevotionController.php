@@ -21,16 +21,16 @@ class DevotionController extends Controller
             'status' => true,
             'message' => 'These are all the devotions',
             'data' => $devotions
-        ],200);
+        ], 200);
     }
 
     public function show(Devotion $devotion)
     {
         //
-        return respoonse()->json([
+        return response()->json([
             'status' => true,
             'message' => 'This is the devotions',
             'data' => $devotion
-        ],200);
+        ], 200);
     }
 }
